@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  pointofsaleswebapp:
+    image: ${DOCKER_REGISTRY-}pointofsaleswebapp
+    build:
+      context: .\PointOfSalesWebApp
+      dockerfile: Dockerfile
