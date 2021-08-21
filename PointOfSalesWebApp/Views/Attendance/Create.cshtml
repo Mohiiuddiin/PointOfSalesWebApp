@@ -1,0 +1,151 @@
+﻿@model PointOfSalesWebApp.Models.Attendance
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+<div style="padding-left: ; border: 0pt whitesmoke groove; border-radius: 5pt; margin-bottom:3% ;">
+    <button type="button" class="btn btn-primary btn-lg btn-block" style="margin-top: 3%; margin-bottom: 3%;">Employee Attendance</button>
+
+    <div class="container align-content-center col-md-4" style="">
+        <hr class="bg-white" />
+
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.EmployeeId, new { @style = "font-size:large;font-weight:bold;color:black;" })
+            @Html.DropDownListFor(x => x.EmployeeId,
+                new SelectList(ViewBag.Employee, "Id", "Id"), "--select--",new { @class = "form-control", @style = "font-size:large;font-weight:;color:black;background-color: white;" })
+            @Html.ValidationMessageFor(x => x.EmployeeId, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.CheckStatus, new { @style = "font-size:large;font-weight:bold;color:black;" })<br />
+            @*Check In : @Html.RadioButtonFor(m => m.CheckStatus, "Check In")
+            Check Out : @Html.RadioButtonFor(m => m.CheckStatus, "Check Out")*@
+            <label class="btn btn-dark">
+                @Html.RadioButtonFor(m => m.CheckStatus, "Check In") Check In
+            </label>
+            <label class="btn btn-dark">
+                @Html.RadioButtonFor(m => m.CheckStatus, "Check Out") Check Out
+            </label>
+            @Html.ValidationMessageFor(model => model.CheckStatus, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Note, new { @style = "font-size:large;font-weight:bold;color:black;" })
+            @Html.TextBoxFor(x => x.Note, new { @class = "form-control", @style = "font-size:large;font-weight:;color:black;background-color: white;" })
+            @Html.ValidationMessageFor(x => x.Note, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <p id="demo" style="font-weight:bold;color:orange"></p>
+            <input id="Latitude" name="Latitude" type="hidden" />
+            <input id="Longitude" name="Longitude" type="hidden" />
+            <input id="ImageUrl" name="ImageUrl" type="hidden" />
+        </div>
+        <div class="form-group">
+            <label style="font-size:large;font-weight:bold;color:black;">Live Camera</label>
+        </div>
+        
+        <div id="webcam" class="form-group col-md-10">
+            
+        </div>
+        <div align="center" class="form-group">
+            <input align="center" class="btn btn-dark" type="button" id="btnCapture" value="Capture" />
+        </div>
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(x => x.ImageUrl, new { @style = "font-size:large;font-weight:bold;color:black;" })
+        </div>
+        <div class="form-group col-md-10" id="results">
+
+        </div>
+        <hr class="bg-white" />
+
+        <input class="btn btn-success" type="submit" id="" value="submit"/>
+        <div class="form-group">
+            @if (ViewBag.Message != null)
+            {
+                <h1 class="text-success" style="font-weight: bold;font-size: large">@ViewBag.Message</h1>
+            }
+        </div>
+    </div>    
+</div>
+    
+    @*@Html.AntiForgeryToken()*@   
+    
+    
+
+}
+<script src="~/Scripts/webcamjs-master/webcam.js"></script>
+
+
+<script type="text/javascript">
+    $(function () {
+        var i;
+        Webcam.set({
+            width: 320,
+            height: 240,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+        Webcam.attach('#webcam');
+        $("#btnCapture").click(function () {
+            Webcam.snap(function (data_uri) {
+                var z = document.getElementById("ImageUrl");
+                z.value = data_uri;
+                    
+                document.getElementById('results').innerHTML =                      
+                    '<img id="ImageUrl" name="ImageUrl" src="' + data_uri + '"/>';
+                
+            });
+            var x = document.getElementById("Latitude");
+            var y = document.getElementById("Longitude");
+            var longitude;
+            var latitude;
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+            function showPosition(position) {
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+                x.value = latitude;
+                y.value = longitude;
+            }
+        });
+        
+        
+        $("#btnUpload").click(function () {
+            var imageUrl = document.getElementById("ImageUrl").src;
+            var employeeId = document.getElementById("EmployeeId").value;
+            var checkStatus = document.getElementById("CheckStatus").value;
+            var note = document.getElementById("Note").value;
+
+
+            var formdata = new FormData();
+            formdata.append("ImageUrl", imageUrl);
+            formdata.append("EmployeeId", employeeId);
+            formdata.append("CheckStatus", checkStatus);
+            formdata.append("Note", note);
+            formdata.append("Longitude", longitude);
+            formdata.append("Latitude", latitude);
+            $.ajax({
+                url: "/Attendance/Create",
+                type: "POST",
+                data: formdata,
+                processData: false,
+                contentType: false
+            });
+        });
+    });
+</script>
+
+@Html.ActionLink("Back to List", "Index")
+
+
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

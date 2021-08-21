@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 align="center">Admin Manager</h2>
+<hr />
+<br />
+<div class="col-md-6">
+    <h4>Product Management</h4>
+    <div class="list-group">
+        @Html.ActionLink("Product Categories", "Index", "ProductCategoryManager", null, new { @class = "list-group-items btn btn-success" })
+        @Html.ActionLink("Product", "Index", "ProductManager", null, new { @class = "list-group-items btn btn-success" })
+    </div>
+</div>
+<div class="col-md-6">
+    <h4>Order Management</h4>
+    <div class="list-group">
+        @Html.ActionLink("Order", "Index", "OrderManager", null, new { @class = "list-group-items btn btn-success" })
+        
+    </div>
+
+</div>
+

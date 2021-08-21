@@ -1,0 +1,6 @@
+﻿@model PointOfSalesWebApp.ViewModels.BusketSummaryView
+
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="@Url.Action("Index","Busket")" >@Model.BusketCount items</a></li>
+    <li><a href="@Url.Action("Index","Busket")"> @string.Format("{0:c}", @Model.BusketTotal)</a></li>
+</ul>

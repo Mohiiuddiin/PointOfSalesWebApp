@@ -6,7 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using PointOfSalesWebApp.Interfaces;
 using PointOfSalesWebApp.Models;
+using PointOfSalesWebApp.ViewModels;
 
 namespace PointOfSalesWebApp.Controllers
 {
@@ -15,16 +17,22 @@ namespace PointOfSalesWebApp.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IRepository<Customer> customerRepository;
 
-        public ManageController()
+        public ManageController(IRepository<Customer> customerRepository)
         {
+            this.customerRepository = customerRepository;
         }
+        //public ManageController()
+        //{
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
+        //}
+
+        //public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        //{
+        //    UserManager = userManager;
+        //    SignInManager = signInManager;
+        //}
 
         public ApplicationSignInManager SignInManager
         {

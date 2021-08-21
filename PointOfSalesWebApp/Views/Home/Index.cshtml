@@ -1,31 +1,61 @@
-﻿@{
+﻿@model PointOfSalesWebApp.ViewModels.ProductListView
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="bg-success" style="margin:10px">
+        <img style="width:100%;height:450px;" src="~/Content/ProductImages/2c8204e52f9d637c7f7910c03e1e36fb-1024x631.jpeg" />
+    </div>
+    <div class="col-md-12" style="background-color:white">
+        <h1 align="center" style="color: darkslategrey;font-weight:bolder">PRODUCT</h1>
+        <hr />
+        <br />
+        <div class="col-md-2">
+            <h style="font-weight:bolder;font-size:14px;color:darkcyan">Filter By Category</h>
+            <hr />
+            <div class="list-group">
+                @Html.ActionLink("All", "Index", null, new { @class = Request["Category"] == null ? "list-group-item active" : "list-group-item" })
+                @foreach (var category in Model.ProductCategory)
+                {
+                    @*@Html.ActionLink(category.Category, "Index", new { Category = category.Category }, new { @class = Request["Category"] == category.Category ? "list-group-item active" : "list-group-item" })*@
+                    @Html.ActionLink(category.Category, "Index", new { Category = category.Category }, new { @class = Request["Category"] == category.Category ? "list-group-item active" : "list-group-item" })
+                }
+            </div>
+        </div>
+        <div class="col-md-10">
+            @foreach (var item in Model.Products)
+            {
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+                <div class="col-md-4" style="height:450px;padding:10px;margin:10px;border:solid thin;border-color:whitesmoke;">
+                    <div class="col-md-12">
+                        <img class="img" style="height:200px;width:200px" src="~/Content/ProductImages/@item.Image" />
+                    </div>
+                    <div class="col-md-12">
+                        <strong>  @Html.ActionLink(item.Name, "Details", new { id = item.Id })  </strong>
+                    </div>
+                    <div class="col-md-12">
+                        <p>@item.Description</p>
+                    </div>
+                    <div class="col-md-12">
+                        <h4>@item.Price</h4>
+                    </div>
+                    <div class="col-md-12">
+                        <a href="@Url.Action("AddToBusket","Busket",new { id = item.Id})" class="btn btn-default">Add To Busket</a>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-12 clearfix" />
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    
+
+
+</body>
+</html>
+

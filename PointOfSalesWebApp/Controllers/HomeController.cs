@@ -1,16 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using PointOfSalesWebApp.Interfaces;
+using PointOfSalesWebApp.Models;
+using PointOfSalesWebApp.ViewModels;
 
 namespace PointOfSalesWebApp.Controllers
 {
+    //[RequireHttps]
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        IRepository<Product> context;
+        IRepository<ProductCategory> productCategories;
+        IRepository<ProductCompany> productCompanies;
+
+        public HomeController(IRepository<Product> productContext, IRepository<ProductCategory> productCategoryContext, IRepository<ProductCompany> productCompanyContext)
         {
-            return View();
+            context = productContext;
+            productCategories = productCategoryContext;
+            productCompanies = productCompanyContext;
+        }
+        public ActionResult Index(string Category = null)
+        {
+            List<Product> products;
+            List<ProductCategory> categories = productCategories.Collection().ToList();
+            List<ProductCompany> companies = productCompanies.Collection().ToList();
+            if(Category == null)
+            {
+                products = context.Collection().ToList();
+            }
+            else
+            {
+                products = context.Collection().Where(x => x.Category.Category == Category).ToList();
+            }
+
+            ProductListView productList = new ProductListView
+            {
+                Products = products,
+                ProductCategory = categories,
+                ProductCompany = companies
+            };
+
+            return View(productList);
+        }
+        public ActionResult Details(string id)
+        {
+            Product product = context.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                return View(product);
+            }
+            
         }
 
         public ActionResult About()

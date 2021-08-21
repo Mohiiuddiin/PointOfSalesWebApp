@@ -1,0 +1,249 @@
+﻿body {
+}
+
+.regbutton {
+    background-color: orangered;
+    color: white;
+    width: 100%;
+    margin: 10px 0;
+    font-weight: 700;
+}
+
+    .regbutton:hover {
+        background-color: green;
+        color: white;
+    }
+
+
+.createbtn {
+    width: 20em;
+    height: 3em;
+    padding: 10px;
+    font-size: 17px;
+    font-family: sans-serif;
+}
+
+
+.register {
+    margin: 5% 15%;
+    box-shadow: 6px 6px 10px 2px #dcb6ff;
+    border-radius: 20px;
+}
+
+.lbl-reg {
+    background-color: #f1551fa1;
+    width: 11em;
+    font-weight: 900;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.cerror {
+    color: red;
+    font-style: oblique;
+    margin-left: 6em;
+    text-shadow: 1px 1px 1px black;
+}
+
+.error {
+    color: red;
+}
+
+.user-name {
+    width: 22em;
+    ;
+    height: 39px;
+    align-content: center;
+    padding: 10px;
+    border-style: none;
+    border-radius: 5px;
+    margin-bottom: 6px;
+    background-color: #ddddfbb3;
+}
+
+
+    .user-name:focus {
+        outline: none;
+        width: 23em;
+        height: 39px;
+        align-content: center;
+        padding: 10px;
+        box-shadow: 0px 3px 0px 0px blue;
+        border-style: none;
+        border-radius: 5px;
+        margin-bottom: 6px;
+    }
+
+.f-bak {
+    background-image: url('../picture/a.jpg');
+    width: 100%;
+    height: 30em;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.f-text {
+    text-align: center;
+    padding-top: 4em;
+    font-size: 35px;
+    font-family: Aquire;
+}
+
+.ftitle {
+    padding: 8px;
+    margin: 2em 0px 10px 0px;
+    border-left: 2px solid #1c6d0d;
+}
+
+.lbl-login {
+    padding: 36px 1em 0 1em;
+    text-align: center;
+    text-shadow: 3px 4px 1px black;
+    font-size: 3em;
+    font-family: AquireBold;
+    color: #66db9d;
+    font-weight: 1000;
+}
+
+
+@keyframes bg {
+    0% {
+        background-size: 0 3px, 3px 0, 0 3px, 3px 0;
+    }
+
+    25% {
+        background-size: 100% 3px, 3px 0, 0 3px, 3px 0;
+    }
+
+    50% {
+        background-size: 100% 3px, 3px 100%, 0 3px, 3px 0;
+    }
+
+    75% {
+        background-size: 100% 3px, 3px 100%, 100% 3px, 3px 0;
+    }
+
+    100% {
+        background-size: 100% 3px, 3px 100%, 100% 3px, 3px 100%;
+        border: 2px solid #6d0097;
+    }
+}
+
+.animate-btn {
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(to right, #6d0097 100%, #6d0097 100%), linear-gradient(to bottom, #0e56d9 100%, #0e56d9 100%), linear-gradient(to right, #6d0097 100%, #6d0097 100%), linear-gradient(to bottom, #0e56d9 100%, #0e56d9 100%);
+    background-size: 100% 3px, 3px 100%, 100% 3px, 3px 100%;
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+    animation: bg 1.5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+    animation-play-state: paused;
+}
+
+@media only screen and (max-device-width: 480px) and (min-device-width: 300px) {
+
+    .navbar-dark .navbar-brand {
+        color: #fff;
+        font-size: 14px;
+    }
+
+    .register {
+        margin: 5%;
+        box-shadow: 6px 6px 10px 2px #dcb6ff;
+        border-radius: 20px;
+    }
+
+    .lbl-login {
+        padding: 36px 1em 0 1em;
+        text-align: center;
+        text-shadow: 3px 4px 1px black;
+        font-size: 2em;
+        font-family: AquireBold;
+        color: #66db9d;
+        font-weight: 1000;
+    }
+
+    .user-name:focus {
+        width: 180px;
+    }
+
+    .lbl-reg {
+        background-color: #f1551fa1;
+        width: 7em;
+        font-weight: 900;
+        color: white;
+        padding: 6px;
+        border-radius: 10px;
+    }
+
+    .user-name {
+        width: 170px;
+        height: 39px;
+        align-content: center;
+        padding: 10px;
+        border-style: none;
+        border-radius: 10px;
+        margin-bottom: 6px;
+        background-color: #ddddfbb3;
+    }
+
+    .lbl-reg {
+        background-color: #f1551fa1;
+        width: 7em;
+        font-weight: 900;
+        color: white;
+        padding: 6px;
+        border-radius: 10px;
+        font-size: 14px;
+    }
+}
+
+
+@media only screen and (min-device-width: 480px) and (max-device-width: 768px) {
+
+    .navbar-dark .navbar-brand {
+        color: #fff;
+        font-size: 16px;
+    }
+
+    .register {
+        margin: 5%;
+        box-shadow: 6px 6px 10px 2px #dcb6ff;
+        border-radius: 20px;
+    }
+
+    .lbl-login {
+        padding: 36px 1em 0 1em;
+        text-align: center;
+        text-shadow: 3px 4px 1px black;
+        font-size: 2em;
+        font-family: AquireBold;
+        color: #66db9d;
+        font-weight: 1000;
+    }
+
+    .user-name:focus {
+        width: 260px;
+    }
+
+    .user-name {
+        width: 250px;
+        height: 39px;
+        align-content: center;
+        padding: 10px;
+        border-style: none;
+        border-radius: 10px;
+        margin-bottom: 6px;
+        background-color: #ddddfbb3;
+    }
+
+    .lbl-reg {
+        background-color: #f1551fa1;
+        width: 8em;
+        font-weight: 900;
+        color: white;
+        padding: 6px;
+        border-radius: 10px;
+        font-size: 15px;
+    }
+}

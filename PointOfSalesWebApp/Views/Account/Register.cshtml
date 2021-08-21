@@ -2,40 +2,83 @@
 @{
     ViewBag.Title = "Register";
 }
+<link href="~/Content/register.css" rel="stylesheet" />
 
-<h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+<div class="register">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="lbl-login animated tada" style="font-family: Monoton;">Register</p>
 
-@section Scripts {
+
+
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", @style = "padding: 2em 5em 5em;" }))
+            {
+                @Html.AntiForgeryToken()
+                <p style="justify-content: center;">
+                    @Html.ValidationSummary("", new { @class = "cerror" })
+                </p>
+                <center>
+
+                    <table style="display: flex; justify-content: center;">
+
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })*@
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "user-name", @placeholder = "Email Id" })
+
+                                @*<input class="user-name" type="text" name="Email" id="email" placeholder="Email Id" required />*@
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                @*@Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })*@
+                            </td>
+                            <td>
+                                @Html.PasswordFor(m => m.Password, new { @class = "user-name", @placeholder = "User Password" })
+
+                                @*<input class="user-name" type="password" name="Password" id="password" placeholder="Password" required />*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*<label class="lbl-reg" for="cpassword">Confirm Password</label>
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })*@
+
+                            </td>
+                            <td>
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "user-name", @placeholder = "Confirm Password" })
+
+                                @*<input class="user-name" type="password" name="cpassword" id="cpassword" placeholder="Confirm Password" required />*@
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" value="Register" class="btn animate-btn" style="width: 100%; margin: 10px 0; background-color: green; color: white; font-weight: 700; border-radius: 10px; height: 39px;" />
+                            </td>
+                        </tr>
+                    </table>
+                </center>
+            }
+            @*<form style="padding: 2em 5em 5em;" id="register" action="~/Authentication/Register" method="POST" enctype="multipart/form-data">*@
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@

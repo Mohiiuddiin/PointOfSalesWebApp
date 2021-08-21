@@ -1,0 +1,109 @@
+﻿body {
+}
+
+@keyframes bg {
+    0% {
+        background-size: 0 3px, 3px 0, 0 3px, 3px 0;
+    }
+
+    25% {
+        background-size: 100% 3px, 3px 0, 0 3px, 3px 0;
+    }
+
+    50% {
+        background-size: 100% 3px, 3px 100%, 0 3px, 3px 0;
+    }
+
+    75% {
+        background-size: 100% 3px, 3px 100%, 100% 3px, 3px 0;
+    }
+
+    100% {
+        background-size: 100% 3px, 3px 100%, 100% 3px, 3px 100%;
+        border: 2px solid #6d0097;
+    }
+}
+
+.animate-btn {
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(to right, #6d0097 100%, #6d0097 100%), linear-gradient(to bottom, #0e56d9 100%, #0e56d9 100%), linear-gradient(to right, #6d0097 100%, #6d0097 100%), linear-gradient(to bottom, #0e56d9 100%, #0e56d9 100%);
+    background-size: 100% 3px, 3px 100%, 100% 3px, 3px 100%;
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+    animation: bg 1.5s cubic-bezier(0.19, 1, 0.22, 1) 1;
+    animation-play-state: paused;
+}
+
+
+.login {
+    margin: 10% 18%;
+    box-shadow: 6px 6px 10px 2px #dcb6ff;
+    border-radius: 20px;
+}
+
+.lbl-login {
+    padding: 36px 1em 0 1em;
+    text-align: center;
+    text-shadow: 3px 4px 1px black;
+    font-size: 3em;
+    font-family: AquireBold;
+    color: #66db9d;
+    font-weight: 1000;
+}
+
+.user-name {
+    width: 21em;
+    height: 39px;
+    align-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    background-color: #ffffffb3;
+}
+
+.login {
+    margin: auto;
+    height: 500px;
+    width: 500px;
+    border-radius: 20px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.user-name {
+    width: 23em;
+    height: 46px !important;
+    align-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    height: 55px;
+    margin-bottom: 20px;
+    background: #e3f1ff;
+}
+
+@media only screen and (max-device-width: 480px) {
+
+    .navbar-dark .navbar-brand {
+        color: #fff;
+        font-size: 14px;
+    }
+
+    .login {
+        margin: auto;
+        height: auto;
+        width: 100%;
+        box-shadow: 6px 6px 10px 2px #dcb6ff;
+        border-radius: 20px;
+        margin-bottom: 50px;
+        margin-top: 50px;
+    }
+
+    .user-name {
+        width: 200px;
+        border-radius: 10px;
+        border: none;
+        height: 55px;
+        margin-bottom: 20px;
+    }
+}

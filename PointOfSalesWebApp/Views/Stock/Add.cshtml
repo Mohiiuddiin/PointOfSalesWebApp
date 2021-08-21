@@ -1,0 +1,212 @@
+﻿@model PointOfSalesWebApp.Models.Product
+
+@{
+    /**/
+
+    ViewBag.Title = "Add";
+}
+
+
+@using (Html.BeginForm())
+{
+    <div style="padding-left: ; border: 0pt whitesmoke groove; border-radius: 5pt; margin-bottom:3% ;">
+        <button type="button" class="btn btn-primary btn-lg btn-block" style="margin-top: 3%; margin-bottom: 3%;">Add Product to Stock</button>
+
+        @Html.AntiForgeryToken()
+
+        <div class="container align-content-center col-md-4">
+            <h4>Product</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductCompanyId, htmlAttributes: new { @style = "font-size:large;font-weight:bold;color:black;" })
+                @Html.DropDownListFor(model => model.ProductCompanyId, new SelectList(ViewBag.Companies, "Id", "Company"), "--Select Company--", new { @class = "form-control", @style = "font-size:large;font-weight:;color:black;background-color: white;" })
+            </div>
+
+
+            <div class="form-group">
+                <label style="font-size:large;font-weight:bold;color:black;">Find By Product NAme</label>
+                <select class="form-control" style="font-size:large;font-weight:;color:black;background-color: white;" id="TName" name="TName">
+                    <option value="">--SELECT--</option>
+                </select>
+                @*@Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })*@
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @style = "font-size:large;font-weight:bold;color:black;" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+            </div>
+            @Html.HiddenFor(model => model.ProductCompany.Company)
+            @*<div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductCode, htmlAttributes: new { @style = "font-size:large;font-weight:bold;color:black;" })
+                @Html.EditorFor(model => model.ProductCode, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.ProductCode, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Category.Category, htmlAttributes: new { @style = "font-size:large;font-weight:bold;color:black;" })
+                @Html.EditorFor(model => model.Category.Category, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @style = "font-size:large;font-weight:bold;color:black;" })
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @style = "font-size:large;font-weight:bold;color:black;" })
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+
+            </div>
+
+            @*<div class="form-group">
+            @Html.LabelFor(model => model.WholeSalePrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WholeSalePrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WholeSalePrice, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @style = "font-size:large;font-weight:bold;color:black;" })
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label style="font-size:large;font-weight:bold;color:black;">Add Quantity</label>
+                <input class="form-control" type="number" id="newQuantity" value="" />
+                <br />
+                <input class="btn btn-dark" type="button" id="AddQuantity" value="Add Quantity" />
+            </div>
+            @*<div class="form-group">
+            @Html.LabelFor(model => model.ProductCategoryId, "ProductCategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ProductCategoryId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductCategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Image, htmlAttributes: new { @style = "font-size:large;font-weight:bold;color:black;" })
+
+                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+                @*<p id="Image" name="Image">@Model.Image</p>*@
+                @*@Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })*@
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+            <div>
+                <h3>@ViewBag.Message</h3>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+    $("#AddQuantity").click(function () {
+        //Webcam.snap(function (data_uri) {
+        //    var z = document.getElementById("ImageUrl");
+        //    z.value = data_uri;
+
+        //    document.getElementById('results').innerHTML =
+        //        '<img id="ImageUrl" name="ImageUrl" src="' + data_uri + '"/>';
+        const x = document.getElementById("Quantity");
+        const y = document.getElementById("newQuantity");
+
+        const num1 = x.value;
+        const num2 = y.value;
+
+        x.value = Number(num1) + Number(num2);
+
+
+
+        });
+    $(document).ready(function () {
+        $("#ProductCompanyId").change(function () {
+            var companyId = $("#ProductCompanyId").val();
+            var json = { id: companyId };
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetProductsByCompany", "Stock")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(json),
+                success: function (data) {
+                    $("#TName").empty();
+                    $("#TName").append('<option value="">--SELECT--</option>');
+                    $.each(data, function (key, value) {
+                        $("#TName").append('<option value=' + value.Id + '>' + value.Name + '</option>');
+                    });
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $("#TName").change(function() {
+            var  productId= $("#TName").val();
+            //$("#ProductCompanyId").empty();
+            var json = { id: productId };
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetProductById", "Stock")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(json),
+                success: function(data) {
+                    //alert(data);
+                    var name = data.Name;
+                    var id = data.Id;
+                    var productCode = data.ProductCode;
+                    var description = data.Description;
+                    var price = data.Price;
+                    var category = data.Category.Category;
+                    var company = data.ProductCompany.Company;
+                    var quantity = data.Quantity;
+                    var image = data.Image;
+                    var productCompanyId = data.ProductCompanyId;
+                    var image = data.Image;
+                    //$("#Name").empty();
+                    //$("#Name").append('<option value="">--SELECT--</option>');
+
+                    //$("#Name").val(name);
+                    $("#Id").val(id);
+                    $("#Name").val(name);
+                    $("#ProductCode").val(productCode);
+                    $("#Description").val(description);
+                    $("#Price").val(price);
+                    $("#Category_Category").val(category);
+                    $("#ProductCompany_Company").val(company);
+                    $("#ProductCompanyId").val(productCompanyId);
+                    $("#Quantity").val(quantity);
+                    $("#Image").val(image);
+
+                    //document.getElementById('results').innerHTML =
+                    //    '<img class="img-thumbnail" id="Image" name="Image" style="height:100px;width:100px" src="' + image + '"/>';
+                    //("#Name").empty();
+                    //   $("#Name").append('<option value=' + id + '>' + name + '</option>');
+                    //$.each(data, function (key, value) {
+                    //    $("#Name").append('<option value=' + value.productId + '>' + value.Name + '</option>');
+                    //});
+                }
+            });
+});
+    });
+</script>

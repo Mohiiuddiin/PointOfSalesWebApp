@@ -3,20 +3,39 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+                @*@Html.ActionLink("Profile", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @style = "width: 110px; height: 45px; background-color: #152F4F;font-weight:bold", @class = " nav-item nav-link" })*@
+                <a class="nav-item nav-link btn btn-success"  href="/Manage/Index" style="width: 110px; height: 45px; background-color: #152F4F;font-weight:bold;margin-top:7px;color:azure" title="Manage"><i class="fas fa-user"></i> Profile</a>
+
+            </li>
+            &nbsp;
+            <li>
+                @*<a class="btn btn-light" style="font-weight:bold" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>*@
+                <a class="nav-item nav-link" href="javascript:document.getElementById('logoutForm').submit()"><button class="btn btn-danger" style="width: 110px; height: 45px; background-color: #152F4F;font-weight:bold"><i class="fas fa-sign-out-alt"></i>Log Out</button></a>
+            </li>
+        </ul>
     }
 }
 else
 {
+    @*<ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-light my-2 my-sm-0 fas fa-user-plus" })</li>
+        &nbsp;
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-light my-2 my-sm-0 fas fa-sign-in-alt" })</li>
+    </ul>*@
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>
+            <a class="nav-item nav-link @ViewBag.Login" href="@Url.Action("Login", "Account")"><button class="btn btn-success" style="width: 110px; height: 45px; background-color: #152F4F;font-weight:bold"><i class="fas fa-sign-in-alt icn"></i> Login</button></a>
+        </li>
+        @*&nbsp;*@
+        <li>
+            <a class="nav-item nav-link @ViewBag.Register" href="@Url.Action("Register", "Account")"><button class="btn btn-success" style="width: 115px; height: 45px; background-color: #152F4F;font-weight:bold"><i class="fas fa-user-plus"></i> Register</button></a>
+        </li>
     </ul>
+
+
 }

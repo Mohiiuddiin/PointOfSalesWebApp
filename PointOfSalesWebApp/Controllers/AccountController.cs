@@ -8,24 +8,22 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using PointOfSalesWebApp.Interfaces;
 using PointOfSalesWebApp.Models;
+using PointOfSalesWebApp.ViewModels;
 
 namespace PointOfSalesWebApp.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IRepository<Customer> customerRepository;
 
-        public AccountController()
+        public AccountController(IRepository<Customer> customerRepository)
         {
-        }
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            this.customerRepository = customerRepository;
         }
 
         public ApplicationSignInManager SignInManager
@@ -156,7 +154,22 @@ namespace PointOfSalesWebApp.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    //register customer model
+                    await UserManager.AddToRoleAsync(user.Id, "Customer");
+
+                    Customer customer = new Customer()
+                    {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Email = model.Email,
+                        City = model.City,
+                        State = model.State,
+                        ZipCode = model.ZipCode,
+                        MobileNumber = model.MobileNumber,
+                        UserId = user.Id
+                    };
+                    customerRepository.Insert(customer);
+                    customerRepository.Commit();
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -367,7 +380,17 @@ namespace PointOfSalesWebApp.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email
+                    //City = model.City,
+                    //FirstName = model.FirstName,
+                    //LastName = model.LastName,
+                    //State = model.State,
+                    //ZipCode = model.ZipCode
+
+                };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -375,6 +398,18 @@ namespace PointOfSalesWebApp.Controllers
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        Customer customer = new Customer()
+                        {
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            Email = model.Email,
+                            City = model.City,
+                            State = model.State,
+                            ZipCode = model.ZipCode,
+                            UserId = user.Id
+                        };
+                        customerRepository.Insert(customer);
+                        customerRepository.Commit();
                         return RedirectToLocal(returnUrl);
                     }
                 }

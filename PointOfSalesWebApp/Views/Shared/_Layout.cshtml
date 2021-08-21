@@ -1,44 +1,187 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+﻿@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
 
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+    </head>
+    <body style="background-color:">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        @if(Request.IsAuthenticated && User.IsInRole("Admin")) {
+                        <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                        }
+                        <li>@Html.ActionLink("Product Manager", "Index", "ProductManager")</li>
+                        <li>@Html.ActionLink("Product Category Manager", "Index", "ProductCategoryManager")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                    @{
+                        Html.RenderAction("BusketSummary", "Busket");
+                    }
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+        <div class="">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>*@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @Scripts.Render("~/bundles/modernizr")
+    @*@Styles.Render("~/Content/css")*@
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/timepicki.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/mobiscroll-2.13.2.full.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <link href="~/Content/custom.css" rel="stylesheet" />
+    <link href="~/Content/animate.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Monoton" />
+    <link href="~/Content/fontawesome.css" rel="stylesheet" />
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    @*<script src="~/Scripts/bootstrap.js"></script>*@
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/fontawesome/all.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+    @*<script>
+            $(document).ready(function () {
+                $('#ViewCourseId').DataTable();
+            });
+        </script>*@
+</head>
+<body style="background-color: whitesmoke; margin-bottom: 0px;">
+    @*darkslategray*@
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="margin-top: 0px">
+        @*<a class="navbar-brand" style="color: whitesmoke; font-weight: bold;" href="#">POS SYSTEM</a>*@
+        <a class="navbar-brand myclass  animated bounceInLeft" href="#" style="font-family: Monoton;">
+            POS SYSTEM
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a style="color: whitesmoke; font-weight: bold;" class="btn btn-light text-dark" id="btnGroupDrop2" type="button" href="~/Home/Index">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+                            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+                        </svg>
+
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                &nbsp;
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <li class="nav-item active">
+                        @*@Html.ActionLink("Admin", "Index", "Admin", null, new { @class = "btn btn-dark" })*@
+                        <a href="@Url.Action("Index", "Admin")"><button class="btn btn-light" style="font-weight:bold"><i class="fas fa-users-cog"></i>Admin</button></a>
+
+                    </li>
+                }
+                &nbsp;
+                <li class="nav-item dropdown">
+                    <button style="color: black; font-weight: bold;" class="dropdown-toggle btn btn-light" type="button" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img style="height:20px" src="~/Content/Icons/icons8-inventory-64.png" /> Inventory</button>
+                    <div class="dropdown-menu">
+                        @Html.ActionLink("Product Manager", "Index", "ProductManager", null, new { @class = "dropdown-item btn text-primary" })
+                        <div class="dropdown-divider"></div>
+                        @Html.ActionLink("Companies", "Index", "ProductCompany", null, new { @class = "dropdown-item btn text-primary" })
+                        <div class="dropdown-divider"></div>
+                        @Html.ActionLink("Product Category Manager", "Index", "ProductCategoryManager", null, new { @class = "dropdown-item btn text-primary" })
+
+                    </div>
+                </li>
+                &nbsp;
+
+                <li class="nav-item dropdown">
+                    <button style="color: black; font-weight: bold;" class="dropdown-toggle btn btn-light" type="button" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img style="height:22px;width:25px" src="~/Content/Icons/employee-icon-free-vector.jpg" />Employee</button>
+                    <div class="dropdown-menu">
+                        @Html.ActionLink("Employee Dashboard", "Index", "Employee", null, new { @class = "dropdown-item text-primary" })
+                        <div class="dropdown-divider"></div>
+                        @Html.ActionLink("Employee Registration", "RegisterEmployee", "Employee", null, new { @class = "dropdown-item text-primary" })
+                        <div class="dropdown-divider"></div>
+                        @Html.ActionLink("Create Position", "AddPosition", "Employee", null, new { @class = "dropdown-item text-primary" })
+
+                    </div>
+                </li> &nbsp;
+                <li class="nav-item dropdown">
+                    <button style="color: whitesmoke; font-weight: bold;" class="dropdown-toggle btn btn-primary" type="button" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Customer</button>
+                    <div class="dropdown-menu">
+                        @Html.ActionLink("Customers", "Index", "Customer", null, new { @class = "dropdown-item text-primary" })
+                        <div class="dropdown-divider"></div>
+                        @Html.ActionLink("Add New Customer", "Create", "Customer", null, new { @class = "dropdown-item text-primary" })
+
+                    </div>
+                </li> &nbsp;
+
+                <li class="nav-item dropdown">
+                    <button style="color: whitesmoke; font-weight: bold;" class="dropdown-toggle btn btn-primary" type="button" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sales</button>
+                    <div class="dropdown-menu">
+                        @Html.ActionLink("Customers", "Index", "Customer", null, new { @class = "dropdown-item text-primary" })
+                        <div class="dropdown-divider"></div>
+                        @Html.ActionLink("Add New Customer", "Create", "Customer", null, new { @class = "dropdown-item text-primary" })
+
+                    </div>
+                </li>            &nbsp;
+
+            </ul>
+
+            @Html.Partial("_LoginPartial")
+            @*<button class="btn btn-secondary my-2 my-sm-0 " type="submit"><i class='fas fa-user-plus' style="color: azure"></i> <b style="color: azure">Login</b> </button>
+            <button class="btn btn-secondary my-2 my-sm-0 " type="submit"><i class="fas fa-sign-in-alt" style="color: azure"></i> <b style="color: azure">Register</b></button>*@
+
+
+        </div>
+    </nav>
+
+
+    <div class="container body-content" style="margin-bottom:5px;padding-top:20px;padding-bottom:20px">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    </div>
+    <div class="navbar fixed-bottom navbar-dark bg-dark">
+        <div align="center" style="color: whitesmoke; font-weight: bold">&copy; @DateTime.Now.Year Point Of Sales Management System</div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+
 </body>
 </html>
