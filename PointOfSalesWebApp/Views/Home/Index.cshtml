@@ -7,18 +7,22 @@
 <html>
 <head>
     <title></title>
+    <link href="~/Content/carddemo.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="bg-success" style="margin:10px">
-        <img style="width:100%;height:450px;" src="~/Content/ProductImages/2c8204e52f9d637c7f7910c03e1e36fb-1024x631.jpeg" />
+    <div class="bg-light" style="margin:10px">
+        <img style="width:100%;height:450px;" src="~/Content/Icons/shop-158317_960_720.png" />
     </div>
     <div class="col-md-12" style="background-color:white">
         <h1 align="center" style="color: darkslategrey;font-weight:bolder">PRODUCT</h1>
         <hr />
         <br />
-        <div class="col-md-2">
-            <h style="font-weight:bolder;font-size:14px;color:darkcyan">Filter By Category</h>
-            <hr />
+        <div class="col-md-12">
+            <h class="btn btn-dark btn-lg" style="font-weight:bolder;font-size:14px;color:azure">Filter By Category</h>
+            <br />
+            <br />
+
+
             <div class="list-group">
                 @Html.ActionLink("All", "Index", null, new { @class = Request["Category"] == null ? "list-group-item active" : "list-group-item" })
                 @foreach (var category in Model.ProductCategory)
@@ -28,33 +32,75 @@
                 }
             </div>
         </div>
-        <div class="col-md-10">
-            @foreach (var item in Model.Products)
-            {
+        @*<div class="row" style="margin:25px">
+                @foreach (var item in Model.Products)
+                {
 
-                <div class="col-md-4" style="height:450px;padding:10px;margin:10px;border:solid thin;border-color:whitesmoke;">
-                    <div class="col-md-12">
-                        <img class="img" style="height:200px;width:200px" src="~/Content/ProductImages/@item.Image" />
+                    <div class="col-md-3" style="height:400px;width:;padding:10px;margin:10px;border:solid thin;border-color:whitesmoke;">
+                        <div class="col-md-12">
+                            <img class="img" style="height:200px;width:200px" src="~/Content/ProductImages/@item.Image" />
+                        </div>
+                        <div class="col-md-12">
+                            <strong>  @Html.ActionLink(item.ProductCompany.Company, "Details", new { id = item.Id })  </strong>
+                        </div>
+                        <div class="col-md-12">
+                            <strong>  @Html.ActionLink(item.Name, "Details", new { id = item.Id })  </strong>
+                        </div>
+                        <div class="col-md-12">
+                            <p>@item.Description</p>
+                        </div>
+                        <div class="col-md-12">
+                            <h4>@item.Price</h4>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="@Url.Action("AddToBusket","Busket",new { id = item.Id})" class="btn btn-warning">Add To Busket</a>
+                        </div>
                     </div>
-                    <div class="col-md-12">
-                        <strong>  @Html.ActionLink(item.Name, "Details", new { id = item.Id })  </strong>
-                    </div>
-                    <div class="col-md-12">
-                        <p>@item.Description</p>
-                    </div>
-                    <div class="col-md-12">
-                        <h4>@item.Price</h4>
-                    </div>
-                    <div class="col-md-12">
-                        <a href="@Url.Action("AddToBusket","Busket",new { id = item.Id})" class="btn btn-default">Add To Busket</a>
+                }
+            </div>*@
+        <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+            <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+                @foreach (var item in Model.Products)
+                {
+
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img class="card-img-top" alt="..." src="~/Content/ProductImages/@item.Image" />
+                        <div class="card-body">
+                            <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-dark text-light">@item.ProductCompany.Company</span> <span class="float-end price-hp">@item.Price</span> </div>
+                            <h5 class="card-title">@item.Name,@item.Description</h5>
+                            @*<h5 class="card-title">@item.ProductCode</h5>*@
+                            @*<h5 class="card-text"></h5>*@
+                            <div class="text-center my-4"> <a href="@Url.Action("AddToBusket","Busket",new { id = item.Id})" class="btn btn-warning">Add To Busket</a> </div>
+                        </div>
                     </div>
                 </div>
-            }
+                }
+            </div>
         </div>
+
+
         <div class="col-md-12 clearfix" />
     </div>
-    
 
+    //
+    //
+
+    @*<div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+        <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img class="card-img-top" alt="..." src="~/Content/ProductImages/@item.Image" />
+                    <div class="card-body">
+                        <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-primary">@Html.ActionLink(item.ProductCompany.Company, "Details", new { id = item.Id })</span> <span class="float-end price-hp">@item.Price</span> </div>
+                        <h5 class="card-title">@item.Description</h5>
+                        <div class="text-center my-4"> <a href="@Url.Action("AddToBusket","Busket",new { id = item.Id})" class="btn btn-warning">Add To Busket</a> </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>*@
 
 </body>
 </html>

@@ -14,6 +14,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace PointOfSalesWebApp.Controllers
 {
+
     public class EmployeeController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -54,7 +55,6 @@ namespace PointOfSalesWebApp.Controllers
         //{
         //    cx.Dispose();
         //}
-        [Authorize(Roles = "Admin,Employee")]
         public ActionResult AddPosition()
         {
             return View();

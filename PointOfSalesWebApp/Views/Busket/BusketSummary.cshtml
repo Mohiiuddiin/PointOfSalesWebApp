@@ -1,6 +1,20 @@
 ﻿@model PointOfSalesWebApp.ViewModels.BusketSummaryView
 
-<ul class="nav navbar-nav navbar-right">
+@*<ul class="nav navbar-nav navbar-right">
     <li><a href="@Url.Action("Index","Busket")" >@Model.BusketCount items</a></li>
-    <li><a href="@Url.Action("Index","Busket")"> @string.Format("{0:c}", @Model.BusketTotal)</a></li>
+    <li> <a href="@Url.Action("Index","Busket")"> @string.Format("{0:c}", @Model.BusketTotal)</a> </li>
+</ul>*@
+
+
+<ul class="nav navbar-nav navbar-collapse">
+    <li>
+        <a href="@Url.Action("Index","Busket")"><button class="btn btn-dark" style="color:azure;width: 110px; height: 45px; background-color: black;font-weight:bold"><i class="fas fa-cart-arrow-down"></i> @Model.BusketCount items</button></a>
+    </li>
+    &nbsp;
+    <li>
+        <a href="@Url.Action("Index","Busket")"><button class="btn btn-dark" style="color:azure;width: 115px; height: 45px; background-color: black;font-weight:bold"><i class="fa-solid fa-bangladeshi-taka-sign"></i> @string.Format("{0:c}", @Model.BusketTotal)</button>  </a>
+    </li>
+    &nbsp;
 </ul>
+
+

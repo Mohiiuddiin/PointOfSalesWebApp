@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 using System.Web.Mvc;
 using PointOfSalesWebApp.Interfaces;
 using PointOfSalesWebApp.Models;
@@ -12,10 +13,12 @@ namespace PointOfSalesWebApp.Controllers
     public class OrderManagerController : Controller
     {
         IOrderManager OrderManager { get; set; }
+        IRepository<OrderItem> OrderItemRepository;
 
-        public OrderManagerController(IOrderManager OrderManager)
+        public OrderManagerController(IOrderManager OrderManager, IRepository<OrderItem> OrderItemRepository)
         {
             this.OrderManager = OrderManager;
+            this.OrderItemRepository = OrderItemRepository;
         }
         // GET: OrderManager
         public ActionResult Index()
@@ -28,12 +31,19 @@ namespace PointOfSalesWebApp.Controllers
         {
             ViewBag.StatusList = new List<string>
             {
-                "Order Created",
+                "Order Confirmed",
                 "Order Shipped",
                 "Payment Processed",
                 "Order Completed"
             };
+            ViewBag.PaymentMethodList = new List<string>
+            {
+                "Cash",
+                "Bkash",
+                "Nagad"
+            };
             Order order = OrderManager.GetOrder(Id);
+            ViewBag.OrderItems = OrderItemRepository.Collection().Where(x => x.OrderId == Id).ToList();
             return View(order);
         }
         [HttpPost]
@@ -42,6 +52,9 @@ namespace PointOfSalesWebApp.Controllers
             Order order = OrderManager.GetOrder(Id);
 
             order.OrderStatus = UpdatedOrder.OrderStatus;
+            order.PaymentMethod = UpdatedOrder.PaymentMethod;
+            order.TransNo = UpdatedOrder.TransNo;
+            order.TransAmount = UpdatedOrder.TransAmount;
             OrderManager.UpdateOrder(order);
             return RedirectToAction("Index");
         }

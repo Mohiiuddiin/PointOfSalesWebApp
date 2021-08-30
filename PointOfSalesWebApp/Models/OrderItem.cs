@@ -9,7 +9,9 @@ namespace PointOfSalesWebApp.Models
 {
     public class OrderItem : BaseEntity
     {
+        //public Order Order { get; set; }
         public string OrderId { get; set; }
+        //public Product Product { get; set; }        
         public string ProductId { get; set; }
         public string ProductName { get; set; }
         public string Image { get; set; }

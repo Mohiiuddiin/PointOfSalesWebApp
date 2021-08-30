@@ -46,7 +46,7 @@ namespace PointOfSalesWebApp.Controllers
             return PartialView(busketSummary);
         }
 
-        //[Authorize]
+        [Authorize(Roles = "Customer")]
         public ActionResult CheckOut()
         {
             Customer customer = Customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name);
@@ -73,7 +73,7 @@ namespace PointOfSalesWebApp.Controllers
         public ActionResult CheckOut(Order order)
         {
             var busket = BusketManager.GetBusketItems(this.HttpContext);
-            order.OrderStatus = "Order Created";
+            order.OrderStatus = "Order Confirmed";
             order.Email = User.Identity.Name;
             //process payment
             order.OrderStatus = "Payment Processed";

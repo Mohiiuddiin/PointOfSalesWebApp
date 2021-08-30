@@ -21,6 +21,9 @@ namespace PointOfSalesWebApp.Models
         public string State { get; set; }
         public string ZipCode { get; set; }
         public string OrderStatus { get; set; }
+        public string PaymentMethod { get; set; }
+        public string TransNo { get; set; }
+        public decimal TransAmount { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

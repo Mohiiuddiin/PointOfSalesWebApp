@@ -16,7 +16,7 @@ namespace PointOfSalesWebApp.BLL.Manager
         IRepository<Busket> busketContext;
 
         public const string BusketSessionName = "eCommerceBusket";
-        public BusketManager(IRepository<Product> productContext,IRepository<Busket> busketContext)
+        public BusketManager(IRepository<Product> productContext, IRepository<Busket> busketContext)
         {
             this.productContext = productContext;
             this.busketContext = busketContext;
@@ -67,14 +67,15 @@ namespace PointOfSalesWebApp.BLL.Manager
 
         public void AddBusket(HttpContextBase httpContext, string productId)
         {
-            
+
             Busket busket = GetBusket(httpContext, true);
-            if (busket == null) {
-                busket = new Busket();                
+            if (busket == null)
+            {
+                busket = new Busket();
             }
-            
+
             BusketItem busketItem = busket.BusketItems.FirstOrDefault(x => x.ProductId == productId);
-            
+
             if (busketItem == null)
             {
                 busketItem = new BusketItem()
@@ -155,12 +156,12 @@ namespace PointOfSalesWebApp.BLL.Manager
         public void ClearBusket(HttpContextBase httpContextBase)
         {
             Busket busket = GetBusket(httpContextBase, false);
-            if(busket != null)
+            if (busket != null)
             {
                 busket.BusketItems.Clear();
                 busketContext.Commit();
             }
-        }    
+        }
 
 
     }

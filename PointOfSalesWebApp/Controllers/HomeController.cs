@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using PointOfSalesWebApp.Interfaces;
@@ -27,11 +28,11 @@ namespace PointOfSalesWebApp.Controllers
             List<ProductCompany> companies = productCompanies.Collection().ToList();
             if(Category == null)
             {
-                products = context.Collection().ToList();
+                products = context.Collection().Include(x=>x.ProductCompany).ToList();
             }
             else
             {
-                products = context.Collection().Where(x => x.Category.Category == Category).ToList();
+                products = context.Collection().Where(x => x.Category.Category == Category).Include(x => x.ProductCompany).ToList();
             }
 
             ProductListView productList = new ProductListView

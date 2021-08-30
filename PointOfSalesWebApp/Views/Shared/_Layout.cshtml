@@ -91,7 +91,7 @@
     @*darkslategray*@
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="margin-top: 0px">
         @*<a class="navbar-brand" style="color: whitesmoke; font-weight: bold;" href="#">POS SYSTEM</a>*@
-        <a class="navbar-brand myclass  animated bounceInLeft" href="#" style="font-family: Monoton;">
+        <a class="navbar-brand myclass  animated bounceInLeft" href="#" style="font-family: Monoton;margin-left:5px">
             POS SYSTEM
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,55 +119,78 @@
                     </li>
                 }
                 &nbsp;
-                <li class="nav-item dropdown">
-                    <button style="color: black; font-weight: bold;" class="dropdown-toggle btn btn-light" type="button" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img style="height:20px" src="~/Content/Icons/icons8-inventory-64.png" /> Inventory</button>
-                    <div class="dropdown-menu">
-                        @Html.ActionLink("Product Manager", "Index", "ProductManager", null, new { @class = "dropdown-item btn text-primary" })
-                        <div class="dropdown-divider"></div>
-                        @Html.ActionLink("Companies", "Index", "ProductCompany", null, new { @class = "dropdown-item btn text-primary" })
-                        <div class="dropdown-divider"></div>
-                        @Html.ActionLink("Product Category Manager", "Index", "ProductCategoryManager", null, new { @class = "dropdown-item btn text-primary" })
+                @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Employee")))
+                {
+                    <li class="nav-item dropdown">
+                        <button style="color: black; font-weight: bold;" class="dropdown-toggle btn btn-light" type="button" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img style="height:20px" src="~/Content/Icons/icons8-inventory-64.png" /> Inventory</button>
+                        <div class="dropdown-menu">
+                            @Html.ActionLink("Product Manager", "Index", "ProductManager", null, new { @class = "dropdown-item btn text-primary" })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("Companies", "Index", "ProductCompany", null, new { @class = "dropdown-item btn text-primary" })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("Product Category Manager", "Index", "ProductCategoryManager", null, new { @class = "dropdown-item btn text-primary" })
 
-                    </div>
-                </li>
+                        </div>
+                    </li>
+                }
+                &nbsp;
+                @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Employee")))
+                {
+                    <li class="nav-item dropdown">
+                        <button style="color: black; font-weight: bold;" class="dropdown-toggle btn btn-light" type="button" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img style="height:22px;width:25px" src="~/Content/Icons/employee-icon-free-vector.jpg" />Employee</button>
+                        <div class="dropdown-menu">
+                            @Html.ActionLink("Employee Dashboard", "Index", "Employee", null, new { @class = "dropdown-item text-primary" })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("Employee Registration", "RegisterEmployee", "Employee", null, new { @class = "dropdown-item text-primary" })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("Create Position", "AddPosition", "Employee", null, new { @class = "dropdown-item text-primary" })
+
+                        </div>
+                    </li>
+                }
+                &nbsp;
+                @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Employee")))
+                {
+                    <li class="nav-item dropdown">
+                        <button style="color: black; font-weight: bold;" class="dropdown-toggle btn btn-light" type="button" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img style="height:22px;width:25px" src="~/Content/Icons/customer-icon-vector-male.jpg" />Customer</button>
+                        <div class="dropdown-menu">
+                            @Html.ActionLink("Customers", "Index", "Customer", null, new { @class = "dropdown-item text-primary" })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("Add New Customer", "Create", "Customer", null, new { @class = "dropdown-item text-primary" })
+
+                        </div>
+                    </li>
+                }
+                &nbsp;
+                @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Employee")))
+                {
+                    <li class="nav-item dropdown">
+                        <button style="color: black; font-weight: bold;" class="dropdown-toggle btn btn-light" type="button" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img style="height:22px;width:25px" src="~/Content/Icons/3577650.png" />Sales</button>
+
+                        <div class="dropdown-menu">
+                            @Html.ActionLink("Add Supplier", "Index", "Supplier", null, new { @class = "dropdown-item text-primary" })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("Make Purchase", "Index", "Purchase", null, new { @class = "dropdown-item text-primary" })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("Make Sales", "Index", "Sales", null, new { @class = "dropdown-item text-primary" })
+
+                        </div>
+                    </li>
+                }
                 &nbsp;
 
-                <li class="nav-item dropdown">
-                    <button style="color: black; font-weight: bold;" class="dropdown-toggle btn btn-light" type="button" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img style="height:22px;width:25px" src="~/Content/Icons/employee-icon-free-vector.jpg" />Employee</button>
-                    <div class="dropdown-menu">
-                        @Html.ActionLink("Employee Dashboard", "Index", "Employee", null, new { @class = "dropdown-item text-primary" })
-                        <div class="dropdown-divider"></div>
-                        @Html.ActionLink("Employee Registration", "RegisterEmployee", "Employee", null, new { @class = "dropdown-item text-primary" })
-                        <div class="dropdown-divider"></div>
-                        @Html.ActionLink("Create Position", "AddPosition", "Employee", null, new { @class = "dropdown-item text-primary" })
 
-                    </div>
-                </li> &nbsp;
-                <li class="nav-item dropdown">
-                    <button style="color: whitesmoke; font-weight: bold;" class="dropdown-toggle btn btn-primary" type="button" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Customer</button>
-                    <div class="dropdown-menu">
-                        @Html.ActionLink("Customers", "Index", "Customer", null, new { @class = "dropdown-item text-primary" })
-                        <div class="dropdown-divider"></div>
-                        @Html.ActionLink("Add New Customer", "Create", "Customer", null, new { @class = "dropdown-item text-primary" })
-
-                    </div>
-                </li> &nbsp;
-
-                <li class="nav-item dropdown">
-                    <button style="color: whitesmoke; font-weight: bold;" class="dropdown-toggle btn btn-primary" type="button" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sales</button>
-                    <div class="dropdown-menu">
-                        @Html.ActionLink("Customers", "Index", "Customer", null, new { @class = "dropdown-item text-primary" })
-                        <div class="dropdown-divider"></div>
-                        @Html.ActionLink("Add New Customer", "Create", "Customer", null, new { @class = "dropdown-item text-primary" })
-
-                    </div>
-                </li>            &nbsp;
 
             </ul>
-
+            @{
+                if (Request.IsAuthenticated && User.IsInRole("Customer"))
+                {
+                    Html.RenderAction("BusketSummary", "Busket");
+                }
+            }
             @Html.Partial("_LoginPartial")
             @*<button class="btn btn-secondary my-2 my-sm-0 " type="submit"><i class='fas fa-user-plus' style="color: azure"></i> <b style="color: azure">Login</b> </button>
-            <button class="btn btn-secondary my-2 my-sm-0 " type="submit"><i class="fas fa-sign-in-alt" style="color: azure"></i> <b style="color: azure">Register</b></button>*@
+        <button class="btn btn-secondary my-2 my-sm-0 " type="submit"><i class="fas fa-sign-in-alt" style="color: azure"></i> <b style="color: azure">Register</b></button>*@
 
 
         </div>

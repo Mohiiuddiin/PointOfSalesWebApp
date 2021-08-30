@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,7 @@ namespace PointOfSalesWebApp.BLL.Manager
             {
                 order.OrderItems.Add(new OrderItem()
                 {
+                    OrderId = order.Id,
                     ProductId = item.Id,
                     ProductName = item.ProductName,
                     Image = item.Image,

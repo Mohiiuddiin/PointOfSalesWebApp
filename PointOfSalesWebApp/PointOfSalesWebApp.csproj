@@ -212,7 +212,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductManagerController.cs" />
+    <Compile Include="Controllers\PurchaseController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\StockController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="DAL\Gateway\DataContext.cs" />
     <Compile Include="DAL\Gateway\SqlRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -277,9 +280,67 @@
     <Compile Include="Migrations\202108141310501_editemployee1.designer.cs">
       <DependentUpon>202108141310501_editemployee1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108260951216_stockout.cs" />
+    <Compile Include="Migrations\202108260951216_stockout.designer.cs">
+      <DependentUpon>202108260951216_stockout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108261146185_stockoutllk.cs" />
+    <Compile Include="Migrations\202108261146185_stockoutllk.designer.cs">
+      <DependentUpon>202108261146185_stockoutllk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108261232087_stockoutllk1.cs" />
+    <Compile Include="Migrations\202108261232087_stockoutllk1.designer.cs">
+      <DependentUpon>202108261232087_stockoutllk1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108261303490_stockoutllk2.cs" />
+    <Compile Include="Migrations\202108261303490_stockoutllk2.designer.cs">
+      <DependentUpon>202108261303490_stockoutllk2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108261312214_customer_edit.cs" />
+    <Compile Include="Migrations\202108261312214_customer_edit.designer.cs">
+      <DependentUpon>202108261312214_customer_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108261618144_sales_edit.cs" />
+    <Compile Include="Migrations\202108261618144_sales_edit.designer.cs">
+      <DependentUpon>202108261618144_sales_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108270632092_edit_order_1.cs" />
+    <Compile Include="Migrations\202108270632092_edit_order_1.designer.cs">
+      <DependentUpon>202108270632092_edit_order_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108270636129_edit_order_2.cs" />
+    <Compile Include="Migrations\202108270636129_edit_order_2.designer.cs">
+      <DependentUpon>202108270636129_edit_order_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108271011509_edit_orderItem_1.cs" />
+    <Compile Include="Migrations\202108271011509_edit_orderItem_1.designer.cs">
+      <DependentUpon>202108271011509_edit_orderItem_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108271017189_del_orderItem_1.cs" />
+    <Compile Include="Migrations\202108271017189_del_orderItem_1.designer.cs">
+      <DependentUpon>202108271017189_del_orderItem_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108271020282_add_orderItem_1.cs" />
+    <Compile Include="Migrations\202108271020282_add_orderItem_1.designer.cs">
+      <DependentUpon>202108271020282_add_orderItem_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108271026036_edit_orderItem_2.cs" />
+    <Compile Include="Migrations\202108271026036_edit_orderItem_2.designer.cs">
+      <DependentUpon>202108271026036_edit_orderItem_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108271040433_sdsddfdf.cs" />
+    <Compile Include="Migrations\202108271040433_sdsddfdf.designer.cs">
+      <DependentUpon>202108271040433_sdsddfdf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108271045085_edit_orderItem_4.cs" />
+    <Compile Include="Migrations\202108271045085_edit_orderItem_4.designer.cs">
+      <DependentUpon>202108271045085_edit_orderItem_4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\BarCode39.cs" />
+    <Compile Include="Models\barcodecs.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Busket.cs" />
     <Compile Include="Models\BusketItem.cs" />
@@ -293,6 +354,12 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Models\ProductCompany.cs" />
+    <Compile Include="Models\Purchase.cs" />
+    <Compile Include="Models\PurchaseDetail.cs" />
+    <Compile Include="Models\Sale.cs" />
+    <Compile Include="Models\SalesDetail.cs" />
+    <Compile Include="Models\Sell.cs" />
+    <Compile Include="Models\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\BusketItemView.cs" />
@@ -312,13 +379,17 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\brands.css" />
     <Content Include="Content\brands.min.css" />
+    <Content Include="Content\carddemo.css" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\fontawesome-all.css" />
     <Content Include="Content\fontawesome-all.min.css" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="Content\fontawesome.min.css" />
+    <Content Include="Content\Icons\3577650.png" />
+    <Content Include="Content\Icons\customer-icon-vector-male.jpg" />
     <Content Include="Content\Icons\employee-icon-free-vector.jpg" />
     <Content Include="Content\Icons\icons8-inventory-64.png" />
+    <Content Include="Content\Icons\shop-158317_960_720.png" />
     <Content Include="Content\IndexCard.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\register.css" />
@@ -371,6 +442,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
+    <None Include="Scripts\jquery-3.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
@@ -578,6 +650,13 @@
     <Content Include="webfonts\fa-brands-400.woff" />
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="Views\Purchase\Index.cshtml" />
+    <Content Include="Views\Sales\Index.cshtml" />
+    <Content Include="Views\Supplier\Create.cshtml" />
+    <Content Include="Views\Supplier\Delete.cshtml" />
+    <Content Include="Views\Supplier\Details.cshtml" />
+    <Content Include="Views\Supplier\Edit.cshtml" />
+    <Content Include="Views\Supplier\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -630,6 +709,48 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108141310501_editemployee1.resx">
       <DependentUpon>202108141310501_editemployee1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108260951216_stockout.resx">
+      <DependentUpon>202108260951216_stockout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108261146185_stockoutllk.resx">
+      <DependentUpon>202108261146185_stockoutllk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108261232087_stockoutllk1.resx">
+      <DependentUpon>202108261232087_stockoutllk1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108261303490_stockoutllk2.resx">
+      <DependentUpon>202108261303490_stockoutllk2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108261312214_customer_edit.resx">
+      <DependentUpon>202108261312214_customer_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108261618144_sales_edit.resx">
+      <DependentUpon>202108261618144_sales_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108270632092_edit_order_1.resx">
+      <DependentUpon>202108270632092_edit_order_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108270636129_edit_order_2.resx">
+      <DependentUpon>202108270636129_edit_order_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108271011509_edit_orderItem_1.resx">
+      <DependentUpon>202108271011509_edit_orderItem_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108271017189_del_orderItem_1.resx">
+      <DependentUpon>202108271017189_del_orderItem_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108271020282_add_orderItem_1.resx">
+      <DependentUpon>202108271020282_add_orderItem_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108271026036_edit_orderItem_2.resx">
+      <DependentUpon>202108271026036_edit_orderItem_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108271040433_sdsddfdf.resx">
+      <DependentUpon>202108271040433_sdsddfdf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108271045085_edit_orderItem_4.resx">
+      <DependentUpon>202108271045085_edit_orderItem_4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

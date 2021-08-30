@@ -4,19 +4,20 @@
     ViewBag.Title = "Index";
 }
 <style>
-    th{
-        color:Highlight;font-size:medium
+    th {
+        color: Highlight;
+        font-size: medium
     }
 </style>
 <br />
 <div style="color:">
-    <h class="btn btn-success" style="padding-left:35px;padding-right:35px;font-weight:bolder;font-size:large"  align="">Order List</h>
-    
+    <h class="btn btn-success" style="padding-left:35px;padding-right:35px;font-weight:bolder;font-size:large" align="">Order List</h>
+
 
     @*<p>
             @Html.ActionLink("List of Orders", "Create")
         </p>*@
-    <table class="table table-responsive" style="">
+    <table class="table table-responsive table-dark" style="">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedAt)
@@ -30,15 +31,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.City)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.State)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ZipCode)
-                </th>*@
+            <th>
+
+                @Html.DisplayNameFor(model => model.PaymentMethod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransNo)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.OrderStatus)
             </th>
@@ -60,15 +62,37 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.City)
-                </td>*@
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.State)
+                <td>
+                    @if (item.PaymentMethod == null)
+                    {
+                        <p>Not Processed</p>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.PaymentMethod)
+                    }
+
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ZipCode)
-                </td>*@
+                    @if (item.PaymentMethod == null)
+                    {
+                        <p>Not Processed</p>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.TransAmount)
+                    }
+                </td>
+                <td>
+                    @if (item.TransNo == null)
+                    {
+                        <p>Not Processed</p>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.TransNo)
+                    }
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.OrderStatus)
                 </td>
@@ -79,6 +103,7 @@
                 </td>
             </tr>
         }
+
 
     </table>
 </div>
