@@ -11,20 +11,13 @@ namespace PointOfSalesWebApp.Models
     public class Sale:BaseEntity
     {
         [Required(ErrorMessage = "Please enter an invoice number")]
-        [StringLength(100)]
-   
+        [StringLength(100)]   
         public string SalesInvoiceNo { get; set; }
-
         public Customer Customer { get; set; }
         [Required(ErrorMessage = "Please choose a Customer")]
-        public string CustomerId { get; set; }
-
-        //public Employee Employee { get; set; }
-        //[Required(ErrorMessage = "Please choose a Customer")]
-        //public string EmployeeId { get; set; }
+        public string CustomerId { get; set; }       
         [StringLength(100)]
         public string Remarks { get; set; }
-
         public double OverallDiscount { get; set; }
         public virtual ICollection<SalesDetail> SalesDetailses { get; set; }
     }
