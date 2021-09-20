@@ -358,6 +358,7 @@
     <Compile Include="Models\PurchaseDetail.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\SalesDetail.cs" />
+    <Compile Include="Models\SalesReport.cs" />
     <Compile Include="Models\Sell.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -657,6 +658,7 @@
     <Content Include="Views\Supplier\Details.cshtml" />
     <Content Include="Views\Supplier\Edit.cshtml" />
     <Content Include="Views\Supplier\Index.cshtml" />
+    <Content Include="Views\Sales\SalesView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

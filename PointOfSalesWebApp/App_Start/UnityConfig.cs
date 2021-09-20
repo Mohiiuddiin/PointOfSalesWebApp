@@ -57,6 +57,8 @@ namespace PointOfSalesWebApp
             container.RegisterType<IRepository<Position>, SqlRepository<Position>>();
             container.RegisterType<IRepository<Attendance>, SqlRepository<Attendance>>();
             container.RegisterType<IRepository<OrderItem>, SqlRepository<OrderItem>>();
+            container.RegisterType<IRepository<Sale>, SqlRepository<Sale>>();
+            container.RegisterType<IRepository<SalesDetail>, SqlRepository<SalesDetail>>();
 
             container.RegisterType<IBusketManager, BusketManager>();
             container.RegisterType<IOrderManager, OrderManager>();
