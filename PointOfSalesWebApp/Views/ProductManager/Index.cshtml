@@ -4,13 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<button type="button" class="btn btn-lg btn-block" style="margin-top: 3%; margin-bottom: 3%;background-color:darkslategrey;color:azure;font-weight:bold">Product Index View</button>
 
 <p>
-    @Html.ActionLink("Create New Product", "Create",null, new { @class = "btn btn-success" })
+    @Html.ActionLink("Create New Product", "Create", null, new { @class = "btn btn-info" })
 </p>
 <table class="table table-dark">
-    <tr>
+    <tr class="text-info">
         <th>
             @Html.DisplayNameFor(model => model.Image)
 
@@ -36,34 +36,35 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <img class="img-thumbnail" style="height:100px;width:100px" src="~/Content/ProductImages/@item.Image" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.Category)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductCompany.Company)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img class="img-thumbnail" style="height:100px;width:100px" src="~/Content/ProductImages/@item.Image" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCompany.Company)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
