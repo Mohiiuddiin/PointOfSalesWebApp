@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<button type="button" class="btn btn-lg btn-block" style="margin-top: 3%; margin-bottom: 3%;background-color:darkslategrey;color:azure;font-weight:bold">Employees</button>
 
 <p>
-    @Html.ActionLink("Register New Employee", "RegisterEmployee")
+    @Html.ActionLink("Register New Employee", "RegisterEmployee", null, new { @class = "btn btn-default", @style = "background-color:teal;font-weight:bold;color:azure" })
 </p>
 <table class="table table-dark">
     <tr>
@@ -44,51 +44,52 @@
             @Html.DisplayNameFor(model => model.CreatedAt)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>*@
+                @Html.DisplayNameFor(model => model.Status)
+            </th>*@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <img class="img-thumbnail" style="height:50px" src="~/Content/EmployeeImages/@item.Image" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Position.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ZipCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MobileNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>*@
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img class="img-thumbnail" style="height:50px" src="~/Content/EmployeeImages/@item.Image" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -16,7 +16,7 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)
     <div class="col-md-2">
-        <img class="img-responsive" src="~/Content/ProductImages/@Model.Product.Image" />
+        <img class="img-responsive" src="~/Content/ProductImages/@Model.Image" />
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
