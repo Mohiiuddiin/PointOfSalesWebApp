@@ -13,6 +13,14 @@ namespace PointOfSalesWebApp.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: Purchase
+        //PurchaseDetailSp
+
+        public ActionResult PurchasesView()
+        {
+            List<PurchaseDetailView> result = db.Database.SqlQuery<PurchaseDetailView>("exec PurchaseDetailSp").ToList();
+
+            return View(result);
+        }
         public ActionResult Index()
         {
             ViewBag.Suppliers = db.Suppliers.ToList();

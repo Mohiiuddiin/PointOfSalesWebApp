@@ -42,7 +42,7 @@
         <div class="col-md-6">
             <div class="form-group col-md-12">
                 <label>Customer Name</label>
-                @Html.DropDownList("Customers", new SelectList(customerList, "Id", "Name"), "-- Select Customer --", new { @style = "font-weight:bold;color:black;background-color: white;", @class = "form-control col-md-12" })
+                @Html.DropDownList("Customers", new SelectList(customerList, "Id", "Name"), "-- Select Customer --", new { @style = "", @class = "form-control col-md-12" })
                 <span class="error">Customer name required</span>
 
             </div>

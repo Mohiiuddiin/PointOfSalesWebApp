@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNet.Identity;
 using PointOfSalesWebApp.DAL.Gateway;
 using PointOfSalesWebApp.Models;
+using PointOfSalesWebApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -33,36 +35,25 @@ namespace PointOfSalesWebApp.Controllers
 
         public ActionResult SalesView()
         {
-            var salesView = from a in db.SalesDetails.ToList()
-                            join b in db.Sales.ToList()
-                            on a.SaleId equals b.Id
-                            join c in db.Products.ToList()
-                            on a.ProductId equals c.Id
-                            join d in db.Customers.ToList()
-                            on b.CustomerId equals d.Id
-                            where a.SaleId == b.Id
-                            select new SalesReport
-                            {
-                                Id = a.Id,
-                                BarCode = a.BarCode,
-                                SaleId = b.Id,
-                                SalesInvoiceNo = b.SalesInvoiceNo,
-                                ProductId = c.Id,
-                                ProductName = c.Name,
-                                CustomerId = d.Id,
-                                CustomerName = d.FirstName,
-                                Quantity = a.Quantity,
-                                LineDiscount = a.LineDiscount,
-                                SRate = a.SRate,
-                                OverallDiscount = b.OverallDiscount                         
+           List<SalesView> salesView = db.Database.SqlQuery<SalesView>("exec SalesDetailViewSp").ToList();
 
 
+            return View(salesView);
+        }
 
-                            };
+        //SalesInfoInvoice
+        public ActionResult SalesInfoInvoice(string Inv)
+        {
+
+            SaleInvoiceView saleInvoiceView = new SaleInvoiceView();
+            SqlParameter InvParam = new SqlParameter("@Inv", Inv);
+            SqlParameter InvParam1 = new SqlParameter("@Inv", Inv);
+
+            saleInvoiceView.salesInfoView = db.Database.SqlQuery<SalesInfoView>("exec SalesInfoViewSp @Inv", InvParam).FirstOrDefault();
+            saleInvoiceView.salesInfoListView = db.Database.SqlQuery<SalesInfoListView>("exec SalesInfoListByInvSp @Inv", InvParam1).ToList();
 
 
-
-            return View(salesView.ToList());
+            return View(saleInvoiceView);
         }
         [HttpGet]
         public JsonResult GetProductInfo(int id)
