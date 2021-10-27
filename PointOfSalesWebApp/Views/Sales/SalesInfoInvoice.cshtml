@@ -3,129 +3,166 @@
 @{
     ViewBag.Title = "SalesInfoInvoice";
 }
-
-
-<div style="margin:10px">
+<script>
+    function printDiv() {
+        var divContents = document.getElementById("forPrint").outerHTML;
+        var a = window.open('', '', 'height=800, width=900');
+        a.document.write('<html>');
+        a.document.write('<head></head>');
+        a.document.write('<body>');
+        a.document.write(divContents);
+        a.document.write('</body></html>');
+        a.document.close();
+        a.print();
+    }
+</script>
+<input type="button" value="Print" onclick="printDiv()">
+<div id="forPrint">
     <div class="col-md-12 row">
-        <button type="button" class="btn btn-secondary btn-lg btn-block" style="margin-top: 3%;font-weight:bold;color:azure">Customer Invoice</button>
 
-    </div>
 
-    <div class="row" style="background-color:white;font-weight:bold;padding:10px">
-        <br />
-        <br />
-        <div class="col-md-12 row">
-            @*@Html.ActionLink("", "SearchRecieve", "",new { @class = "" })*@
-            <div class="col-md-4">
-                <a class="btn btn-primary" style="" href="/MRSR/SearchRecieve">Back To List</a>
+        <div class="row" style="width:100%;background-color:white;font-weight:bold;margin:10px">
+            <button type="button" class="btn btn-secondary btn-lg btn-block col-md-12" style="width:100%;font-weight:bold;color:azure;padding-top:10px">Customer Invoice</button>
 
+            <br />
+            <br />
+            <div class="col-md-12 row" style="padding-top:10px">
+                <div class="col-md-4">
+                    <a class="btn btn-primary" style="" href="/MRSR/SearchRecieve">Back To List</a>
+
+
+                </div>
             </div>
+
+            <div class="col-md-6" style="padding-top:10px">
+                <div class="col-md-12" style="color:orangered">
+                    @Html.Label("Invoice No", new { @class = "" })
+
+                </div>
+                <div class="col-md-12 text-success">
+                    @Html.DisplayFor(x => x.salesInfoView.SalesInvoiceNo)
+
+                </div>
+            </div>
+            <div class="col-md-6" style="padding-top:10px">
+                <div class="col-md-12" style="color:orangered">
+                    @Html.Label("Customer Name")
+                </div>
+                <div class="col-md-12">
+                    @Html.DisplayFor(x => x.salesInfoView.FirstName)&nbsp;
+                    @Html.DisplayFor(x => x.salesInfoView.LastName)
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12" style="color:orangered">
+                    @Html.Label("Date")
+
+                </div>
+                <div class="col-md-12">
+                    @Html.DisplayFor(x => x.salesInfoView.CreatedAt)
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-6" style="color:orangered">
+                    @Html.Label("Mobile")
+
+                </div>
+                <div class="col-md-12">
+                    @Html.DisplayFor(x => x.salesInfoView.MobileNumber)
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12" style="color:orangered">
+                    @Html.LabelFor(x => x.salesInfoView.Email)
+
+                </div>
+                <div class="col-md-12">
+                    @Html.DisplayFor(x => x.salesInfoView.Email)
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12" style="color:orangered">
+                    @Html.LabelFor(x => x.salesInfoView.OverallDiscount)
+                </div>
+                <div class="col-md-12">
+                    @Html.DisplayFor(x => x.salesInfoView.OverallDiscount)
+                </div>
+            </div>
+            @{
+                var sum = 0.0;
+            }
+            <div class="col-md-12" style="padding-top:10px">
+                <table class="table table-dark table-responsive-xl">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Product Code</th>
+                            <th>Quantity</th>
+
+                            <th>Discount(%)</th>
+                            <th>Vat</th>
+                            <th>Price</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.salesInfoListView)
+                        {
+                            <tr>
+                                <td>
+                                    @item.ProductName
+                                </td>
+                                <td>
+                                    @item.ProductCode
+                                </td>
+                                <td>
+                                    @item.Quantity
+                                </td>
+                                <td>
+                                    @item.LineDiscount
+                                </td>
+                                <td>
+                                    @item.Vat
+                                </td>
+                                <td>
+                                    @item.SRate
+                                </td>
+                                @{
+                                    if (item.Vat > 0)
+                                    {
+                                        item.SRate = item.SRate - item.SRate * (item.Vat / 100);
+                                    }
+                                    if (item.LineDiscount > 0)
+                                    {
+                                        item.SRate = item.SRate - item.SRate * (item.LineDiscount / 100);
+                                    }
+                                    sum = Convert.ToDouble(item.Quantity * item.SRate);
+                                }
+                            </tr>
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" align="right">
+                                <p class="text-info">Total: </p>
+                            </td>
+                            <td colspan="6" align="right">
+                                <p class="text-danger">@sum</p>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+
         </div>
 
-        <div class="col-md-6 row">
-            <div class="col-md-2">
-                @Html.Label("Invoice No")
-
-            </div>
-            <div class="col-md-4 text-success">
-                @Html.DisplayFor(x => x.salesInfoView.SalesInvoiceNo)
-
-            </div>
-        </div>
-        <div class="col-md-6 row">
-            <div class="col-md-2">
-                @Html.Label("Customer Name")
-            </div>
-            <div class="col-md-4">
-                @Html.DisplayFor(x => x.salesInfoView.FirstName) &nbsp;
-                @Html.DisplayFor(x => x.salesInfoView.LastName)
-
-            </div>
-        </div>
-        <div class="col-md-6 row">
-            <div class="col-md-2">
-                @Html.Label("Date")
-
-            </div>
-            <div class="col-md-4">
-                @Html.DisplayFor(x => x.salesInfoView.CreatedAt)
-
-            </div>
-        </div>
-        <div class="col-md-6 row">
-            <div class="col-md-2">
-                @Html.Label("Mobile")
-
-            </div>
-            <div class="col-md-4">
-                @Html.DisplayFor(x => x.salesInfoView.MobileNumber)
-
-            </div>
-        </div>
-        <div class="col-md-6 row">
-            <div class="col-md-2">
-                @Html.LabelFor(x => x.salesInfoView.Email)
-
-            </div>
-            <div class="col-md-4">
-                @Html.DisplayFor(x => x.salesInfoView.Email)
-
-            </div>
-        </div>
-        <div class="col-md-6 row">
-            <div class="col-md-2">
-                @Html.LabelFor(x => x.salesInfoView.OverallDiscount)
-            </div>
-            <div class="col-md-4">
-                @Html.DisplayFor(x => x.salesInfoView.OverallDiscount)
-            </div>
-        </div>
 
 
-
-    </div>
-
-
-    <div class="row">
-        <table class="table table-dark">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Product Code</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Discount</th>
-                    <th>Vat</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.salesInfoListView)
-                {
-                <tr>
-                    <td>
-                        @item.ProductName
-                    </td>
-                    <td>
-                        @item.ProductCode
-                    </td>
-                    <td>
-                        @item.Quantity
-                    </td>
-                    <td>
-                        @item.SRate
-                    </td>
-                    <td>
-                        @item.LineDiscount
-                    </td>
-                    <td>
-                        @item.Vat
-                    </td>
-                    
-                </tr>
-                }
-
-            </tbody>
-        </table>
     </div>
 </div>

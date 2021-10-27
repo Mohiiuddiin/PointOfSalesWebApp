@@ -38,6 +38,8 @@ namespace PointOfSalesWebApp.Models
         public DbSet<SalesDetail> SalesDetails { get; set; }
         public DbSet<Sale> Sales { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        //public DbSet<SalesInfoView> SalesInfoView { get; set; }
+        //public DbSet<SalesInfoListView> SalesInfoListView { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

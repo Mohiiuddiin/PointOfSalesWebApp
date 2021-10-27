@@ -156,7 +156,7 @@
                         <div class="dropdown-menu">
                             @Html.ActionLink("Customers", "Index", "Customer", null, new { @class = "dropdown-item text-primary" })
                             <div class="dropdown-divider"></div>
-                            @Html.ActionLink("Add New Customer", "Create", "Customer", null, new { @class = "dropdown-item text-primary" })
+                            @Html.ActionLink("Add New Customer", "AddCustomer", "Customer", null, new { @class = "dropdown-item text-primary" })
 
                         </div>
                     </li>
@@ -173,6 +173,11 @@
                             @Html.ActionLink("Make Purchase", "Index", "Purchase", null, new { @class = "dropdown-item text-primary" })
                             <div class="dropdown-divider"></div>
                             @Html.ActionLink("Make Sales", "Index", "Sales", null, new { @class = "dropdown-item text-primary" })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("View Sales", "SalesView", "Sales", null, new { @class = "dropdown-item text-primary" })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("View Purchases", "PurchasesView", "Purchase", null, new { @class = "dropdown-item text-primary" })
+
 
                         </div>
                     </li>

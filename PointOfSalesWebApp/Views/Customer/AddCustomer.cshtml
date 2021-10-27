@@ -1,0 +1,101 @@
+﻿@model PointOfSalesWebApp.Models.Customer
+
+@{
+    ViewBag.Title = "AddCustomer";
+}
+
+<style>
+    label {
+        color: azure;
+        font-weight: bold
+    }
+</style>
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div style="background-color:black;padding-left: ; border: 0pt whitesmoke groove; border-radius: 5pt; margin-bottom:3% ;">
+
+        <button type="button" class="btn btn-lg btn-block" style="margin-top: 3%; margin-bottom: 3%;background-color:darkslategrey;color:azure;font-weight:bold">Add Customer</button>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control col-md-12" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control col-md-12" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control col-md-12" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control col-md-12" } })
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control col-md-12" } })
+                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control col-md-12" } })
+                    @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control col-md-12" } })
+                    @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <input type="submit" value="Create" class="btn btn-primary col-md-12" />
+                </div>
+            </div>
+            <br />
+            <br />
+        </div>
+        
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

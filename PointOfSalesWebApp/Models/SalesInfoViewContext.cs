@@ -5,13 +5,15 @@ namespace PointOfSalesWebApp.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class Model1 : DbContext
+    public partial class SalesInfoViewContext : DbContext
     {
-        public Model1()
-            : base("name=Model1")
+        //SalesInfoViewContext
+        public SalesInfoViewContext()
+            : base("name=DefaultConnection")
         {
         }
 
+        public virtual DbSet<SalesInfoListView> SalesInfoListViews { get; set; }
         public virtual DbSet<SalesInfoView> SalesInfoViews { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

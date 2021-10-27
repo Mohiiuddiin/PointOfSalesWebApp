@@ -26,5 +26,29 @@ namespace PointOfSalesWebApp.Controllers
             var customers = context.Collection().ToList();
             return View(customers);
         }
+
+        public ActionResult AddCustomer()
+        {
+            
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddCustomer(Customer customer)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                customer.Name = customer.FirstName + " " + customer.LastName;
+                context.Insert(customer);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(customer);
+            }
+
+            
+            
+        }
     }
 }

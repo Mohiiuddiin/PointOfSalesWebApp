@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.Reporting.WebForms;
 using PointOfSalesWebApp.DAL.Gateway;
 using PointOfSalesWebApp.Models;
 using PointOfSalesWebApp.ViewModels;
@@ -7,9 +8,12 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
-
+using System.Web.UI.WebControls;
 
 namespace PointOfSalesWebApp.Controllers
 {
@@ -33,6 +37,8 @@ namespace PointOfSalesWebApp.Controllers
             return View();
         }
 
+
+        
         public ActionResult SalesView()
         {
            List<SalesView> salesView = db.Database.SqlQuery<SalesView>("exec SalesDetailViewSp").ToList();
@@ -40,7 +46,42 @@ namespace PointOfSalesWebApp.Controllers
 
             return View(salesView);
         }
+        public ActionResult ViewReport(string Inv)
+        {
+            SalesInfoViewContext salesct = new SalesInfoViewContext();
+            ReportViewer reportViewer = new ReportViewer();
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+            reportViewer.SizeToReportContent = true;
 
+
+            reportViewer.Width = Unit.Percentage(100);
+            reportViewer.Height = Unit.Percentage(100);
+            try
+            {
+                SalesInfoView data = new SalesInfoView();
+                IEnumerable<SalesInfoListView> dataList = new List<SalesInfoListView>();
+
+                //SaleInvoiceView saleInvoiceView = new SaleInvoiceView();
+                //SqlParameter InvParam = new SqlParameter("@Inv", Inv);
+                //SqlParameter InvParam1 = new SqlParameter("@Inv", Inv);
+
+                //data = db.Database.SqlQuery<SalesInfoView>("exec SalesInfoViewSp @Inv", InvParam).FirstOrDefault();
+                //dataList = db.Database.SqlQuery<SalesInfoListView>("exec SalesInfoListByInvSp @Inv", InvParam1).ToList();
+                data = salesct.SalesInfoViews.FirstOrDefault(x => x.SalesInvoiceNo == Inv);
+                dataList = salesct.SalesInfoListViews.Where(x => x.SalesInvoiceNo == Inv).ToList();
+                reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\CustomerInvoice.rdlc";
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dsSalesInfo", data));
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dsSalesListInfo", dataList));
+                ViewBag.ReportViewer = reportViewer;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+            return View();
+        }
         //SalesInfoInvoice
         public ActionResult SalesInfoInvoice(string Inv)
         {
@@ -130,6 +171,59 @@ namespace PointOfSalesWebApp.Controllers
             else
             {
                 status = false;
+            }
+
+
+
+
+            SaleInvoiceView saleInvoiceView = new SaleInvoiceView();
+            SqlParameter InvParam = new SqlParameter("@Inv", objSales.SalesInvoiceNo);
+            SqlParameter InvParam1 = new SqlParameter("@Inv", objSales.SalesInvoiceNo);
+
+            saleInvoiceView.salesInfoView = db.Database.SqlQuery<SalesInfoView>("exec SalesInfoViewSp @Inv", InvParam).FirstOrDefault();
+            saleInvoiceView.salesInfoListView = db.Database.SqlQuery<SalesInfoListView>("exec SalesInfoListByInvSp @Inv", InvParam1).ToList();
+
+            var senderEmail = new MailAddress("mdmohiuddin050505@gmail.com", "Mohiuddin");
+            //var receiverEmail = new MailAddress("md.mohiiuddiin@gmail.com", "Receiver");
+            var receiverEmail = new MailAddress(saleInvoiceView.salesInfoView.Email, "Receiver");
+            var password = "73564681";
+            var sub = "Invoice of Purchased Product";
+            var body = "Hello"+" "+ saleInvoiceView.salesInfoView.FirstName+" "+ saleInvoiceView.salesInfoView.LastName+",\n"+
+                "Invoice Information:"+"\n\n"+"Inv No:"+ saleInvoiceView.salesInfoView.SalesInvoiceNo
+                +"\nProduct Information:\n";
+            int count = 0;
+            double sum = 0;
+            foreach (var item in saleInvoiceView.salesInfoListView)
+            {
+                count++;
+                body += @count.ToString()+". "+item.ProductName+", Product Code :"+item.ProductCode+", Quantity:"+item.Quantity+",Price:"+item.SRate+"\n\n";
+                sum += (item.Quantity + item.SRate);
+
+            }
+
+            body += "Discount:"+ saleInvoiceView.salesInfoView.OverallDiscount+"%\n\n";
+            body += "Total:"+ sum+"\n\n";
+            body += "Thank You";
+
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(senderEmail.Address, password)
+            };
+
+            smtp.EnableSsl = true;
+            using (var mess = new MailMessage(senderEmail, receiverEmail)
+            {
+                Subject = sub,
+                Body = body
+            })
+            {
+                smtp.Send(mess);
             }
             return new JsonResult { Data = new { status = status } };
         }

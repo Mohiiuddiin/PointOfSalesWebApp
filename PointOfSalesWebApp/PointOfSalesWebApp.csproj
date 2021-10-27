@@ -56,6 +56,30 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="ReportViewerForMvc, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReportViewerForMvc14.140.1000.523\lib\net45\ReportViewerForMvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -220,6 +244,17 @@
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="DAL\Gateway\DataContext.cs" />
     <Compile Include="DAL\Gateway\SqlRepository.cs" />
+    <Compile Include="Models\SalesInfoViewContext.cs" />
+    <Compile Include="Reports\Datasets\dsSalesInfo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsSalesInfo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Datasets\dsSalesListInfo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsSalesListInfo.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -350,8 +385,6 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Model1.cs" />
-    <Compile Include="Models\Model2.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\Position.cs" />
@@ -370,6 +403,7 @@
     <Compile Include="Models\Sell.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\BusketItemView.cs" />
     <Compile Include="ViewModels\BusketSummaryView.cs" />
@@ -379,6 +413,39 @@
     <Compile Include="ViewModels\SaleInvoiceView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content - Copy\animate.css" />
+    <Content Include="Content - Copy\animate.min.css" />
+    <Content Include="Content - Copy\bootstrap-grid.css" />
+    <Content Include="Content - Copy\bootstrap-grid.min.css" />
+    <Content Include="Content - Copy\bootstrap-reboot.css" />
+    <Content Include="Content - Copy\bootstrap-reboot.min.css" />
+    <Content Include="Content - Copy\bootstrap.css" />
+    <Content Include="Content - Copy\bootstrap.min.css" />
+    <Content Include="Content - Copy\brands.css" />
+    <Content Include="Content - Copy\brands.min.css" />
+    <Content Include="Content - Copy\carddemo.css" />
+    <Content Include="Content - Copy\custom.css" />
+    <Content Include="Content - Copy\fontawesome-all.css" />
+    <Content Include="Content - Copy\fontawesome-all.min.css" />
+    <Content Include="Content - Copy\fontawesome.css" />
+    <Content Include="Content - Copy\fontawesome.min.css" />
+    <Content Include="Content - Copy\Icons\3577650.png" />
+    <Content Include="Content - Copy\Icons\customer-icon-vector-male.jpg" />
+    <Content Include="Content - Copy\Icons\employee-icon-free-vector.jpg" />
+    <Content Include="Content - Copy\Icons\icons8-inventory-64.png" />
+    <Content Include="Content - Copy\Icons\shop-158317_960_720.png" />
+    <Content Include="Content - Copy\IndexCard.css" />
+    <Content Include="Content - Copy\Login.css" />
+    <Content Include="Content - Copy\register.css" />
+    <Content Include="Content - Copy\regular.css" />
+    <Content Include="Content - Copy\regular.min.css" />
+    <Content Include="Content - Copy\Site.css" />
+    <Content Include="Content - Copy\solid.css" />
+    <Content Include="Content - Copy\solid.min.css" />
+    <Content Include="Content - Copy\svg-with-js.css" />
+    <Content Include="Content - Copy\svg-with-js.min.css" />
+    <Content Include="Content - Copy\v4-shims.css" />
+    <Content Include="Content - Copy\v4-shims.min.css" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -414,6 +481,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ReportViewerWebForm.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -451,6 +519,34 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content - Copy\bootstrap-grid.css.map" />
+    <Content Include="Content - Copy\bootstrap-grid.min.css.map" />
+    <Content Include="Content - Copy\bootstrap-reboot.css.map" />
+    <Content Include="Content - Copy\bootstrap-reboot.min.css.map" />
+    <Content Include="Content - Copy\bootstrap.css.map" />
+    <Content Include="Content - Copy\bootstrap.min.css.map" />
+    <Content Include="Reports\Datasets\dsSalesInfo.xsc">
+      <DependentUpon>dsSalesInfo.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\Datasets\dsSalesInfo.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSalesInfo.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Reports\Datasets\dsSalesInfo.xss">
+      <DependentUpon>dsSalesInfo.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\Datasets\dsSalesListInfo.xsc">
+      <DependentUpon>dsSalesListInfo.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\Datasets\dsSalesListInfo.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSalesListInfo.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Reports\Datasets\dsSalesListInfo.xss">
+      <DependentUpon>dsSalesListInfo.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <None Include="Scripts\jquery-3.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
@@ -560,7 +656,22 @@
     <Content Include="Scripts\webcamjs-master\webcam.js" />
     <Content Include="Scripts\webcamjs-master\webcam.min.js" />
     <Content Include="Scripts\webcamjs-master\webcam.swf" />
-    <Content Include="Web.config" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -670,15 +781,21 @@
     <Content Include="Views\Purchase\PurchasesView.cshtml" />
     <Content Include="Views\Sales\SalesView.cshtml" />
     <Content Include="Views\Sales\SalesInfoInvoice.cshtml" />
+    <Content Include="Views\Sales\SendInvoice.cshtml" />
+    <Content Include="Views\Customer\AddCustomer.cshtml" />
+    <Content Include="Views\Sales\ViewReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Content - Copy\EmployeeImages\" />
+    <Folder Include="Content - Copy\ProductImages\" />
     <Folder Include="Content\EmployeeImages\" />
     <Folder Include="Content\ProductImages\" />
     <Folder Include="Views\Company\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202106100628528_Initial.resx">
@@ -765,6 +882,7 @@
     <EmbeddedResource Include="Migrations\202108271045085_edit_orderItem_4.resx">
       <DependentUpon>202108271045085_edit_orderItem_4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\CustomerInvoice.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

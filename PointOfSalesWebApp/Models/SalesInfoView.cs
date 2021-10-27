@@ -6,7 +6,7 @@ namespace PointOfSalesWebApp.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    //[Table("SalesInfoView")]
+    [Table("SalesInfoView")]
     public partial class SalesInfoView
     {
         public string FirstName { get; set; }
@@ -17,10 +17,17 @@ namespace PointOfSalesWebApp.Models
 
         public string MobileNumber { get; set; }
 
-        
+        [Key]
+        [Column(Order = 0)]
+        [StringLength(100)]
         public string SalesInvoiceNo { get; set; }
-        
+
+        [Key]
+        [Column(Order = 1)]
         public double OverallDiscount { get; set; }
-        public DateTimeOffset CreatedAt { get; set; }
+
+        [Key]
+        [Column(Order = 2)]
+        public string Id { get; set; }
     }
 }
