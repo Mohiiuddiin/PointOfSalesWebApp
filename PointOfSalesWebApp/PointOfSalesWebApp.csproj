@@ -528,6 +528,8 @@
     <Content Include="Reports\Datasets\dsSalesInfo.xsc">
       <DependentUpon>dsSalesInfo.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\mohiudddinpossystem - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\PosSystem- Web Deploy.pubxml" />
     <None Include="Reports\Datasets\dsSalesInfo.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dsSalesInfo.Designer.cs</LastGenOutput>

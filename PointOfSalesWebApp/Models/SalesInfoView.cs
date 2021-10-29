@@ -29,5 +29,7 @@ namespace PointOfSalesWebApp.Models
         [Key]
         [Column(Order = 2)]
         public string Id { get; set; }
+
+        public DateTimeOffset CreatedAt { get; set; }
     }
 }

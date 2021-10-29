@@ -40,6 +40,7 @@ namespace PointOfSalesWebApp.Controllers
             {
                 customer.Name = customer.FirstName + " " + customer.LastName;
                 context.Insert(customer);
+                context.Commit();
                 return RedirectToAction("Index");
             }
             else
