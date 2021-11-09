@@ -12,9 +12,9 @@
                 <Value>Customer Invoice</Value>
                 <Style>
                   <FontFamily>Bernard MT Condensed</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>14pt</FontSize>
                   <FontWeight>Bold</FontWeight>
-                  <Color>Maroon</Color>
+                  <Color>White</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -31,6 +31,7 @@
           <Border>
             <Style>None</Style>
           </Border>
+          <BackgroundColor>Maroon</BackgroundColor>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -46,8 +47,8 @@
               <TextRun>
                 <Value>Invoice</Value>
                 <Style>
-                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
+                  <Color>DarkOliveGreen</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -150,8 +151,8 @@
               <TextRun>
                 <Value>Customer Name</Value>
                 <Style>
-                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
+                  <Color>DarkOliveGreen</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -254,8 +255,8 @@
               <TextRun>
                 <Value>Date</Value>
                 <Style>
-                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
+                  <Color>DarkOliveGreen</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -266,9 +267,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>0.67775in</Top>
-        <Left>0.34091in</Left>
+        <Left>0.3548in</Left>
         <Height>0.20834in</Height>
-        <Width>1.02083in</Width>
+        <Width>1.00694in</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>
@@ -322,7 +323,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=First(Fields!CreatedAt.Value, "dsSalesInfo")</Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -358,8 +359,8 @@
               <TextRun>
                 <Value>Email</Value>
                 <Style>
-                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
+                  <Color>DarkOliveGreen</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -463,8 +464,8 @@
               <TextRun>
                 <Value>Overall Discount</Value>
                 <Style>
-                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
+                  <Color>DarkOliveGreen</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -567,8 +568,8 @@
               <TextRun>
                 <Value>Mobile</Value>
                 <Style>
-                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
+                  <Color>DarkOliveGreen</Color>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -703,6 +704,7 @@
                               <Value>Product Name</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>DarkOliveGreen</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -735,6 +737,7 @@
                               <Value>Product Code</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>DarkOliveGreen</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -767,6 +770,7 @@
                               <Value>Quantity</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>DarkOliveGreen</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -799,6 +803,7 @@
                               <Value>Vat</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>DarkOliveGreen</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -831,6 +836,7 @@
                               <Value>Line Discount</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>DarkOliveGreen</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -863,6 +869,7 @@
                               <Value>Rate</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>DarkOliveGreen</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -895,6 +902,7 @@
                               <Value>Total</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>DarkOliveGreen</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1246,8 +1254,10 @@
     <Height>3.58333in</Height>
     <Style />
   </Body>
-  <Width>8.31333in</Width>
+  <Width>7.53in</Width>
   <Page>
+    <PageHeight>11.69in</PageHeight>
+    <PageWidth>8.27in</PageWidth>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
     <TopMargin>1in</TopMargin>
@@ -1256,19 +1266,19 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="dsSalesInfo">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>599dbcf3-c8eb-411a-9c78-353e660c9270</rd:DataSourceID>
-    </DataSource>
     <DataSource Name="dsSalesListInfo">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
       <rd:DataSourceID>2d173078-554d-4e37-80a8-23c488e08444</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="dsSalesInfo">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>e868d57a-d559-4474-a24d-8c79d4aa306d</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -1301,6 +1311,14 @@
         <Field Name="OverallDiscount">
           <DataField>OverallDiscount</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="Id">
+          <DataField>Id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CreatedAt">
+          <DataField>CreatedAt</DataField>
+          <rd:TypeName>System.DateTimeOffset</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>

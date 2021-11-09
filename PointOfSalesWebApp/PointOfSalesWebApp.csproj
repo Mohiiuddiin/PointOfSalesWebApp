@@ -244,6 +244,11 @@
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="DAL\Gateway\DataContext.cs" />
     <Compile Include="DAL\Gateway\SqlRepository.cs" />
+    <Compile Include="dsSalesInfo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsSalesInfo.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dsSalesListInfo.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -535,6 +540,17 @@
     </Content>
     <Content Include="dsSalesListInfo.xsc">
       <DependentUpon>dsSalesListInfo.xsd</DependentUpon>
+    </Content>
+    <Content Include="dsSalesInfo.xsc">
+      <DependentUpon>dsSalesInfo.xsd</DependentUpon>
+    </Content>
+    <None Include="dsSalesInfo.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSalesInfo.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="dsSalesInfo.xss">
+      <DependentUpon>dsSalesInfo.xsd</DependentUpon>
     </Content>
     <None Include="dsSalesListInfo.xsd">
       <Generator>MSDataSetGenerator</Generator>
