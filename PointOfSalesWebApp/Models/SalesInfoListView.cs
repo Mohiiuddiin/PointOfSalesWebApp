@@ -47,5 +47,6 @@ namespace PointOfSalesWebApp.Models
         [Key]
         [Column(Order = 8)]
         public DateTimeOffset CreatedAt { get; set; }
+        public double Total { get; set; }
     }
 }

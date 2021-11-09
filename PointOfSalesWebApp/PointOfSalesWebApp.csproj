@@ -244,6 +244,11 @@
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="DAL\Gateway\DataContext.cs" />
     <Compile Include="DAL\Gateway\SqlRepository.cs" />
+    <Compile Include="dsSalesListInfo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsSalesListInfo.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\SalesInfoViewContext.cs" />
     <Compile Include="Reports\Datasets\dsSalesInfo.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -527,6 +532,17 @@
     <Content Include="Content - Copy\bootstrap.min.css.map" />
     <Content Include="Reports\Datasets\dsSalesInfo.xsc">
       <DependentUpon>dsSalesInfo.xsd</DependentUpon>
+    </Content>
+    <Content Include="dsSalesListInfo.xsc">
+      <DependentUpon>dsSalesListInfo.xsd</DependentUpon>
+    </Content>
+    <None Include="dsSalesListInfo.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsSalesListInfo.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="dsSalesListInfo.xss">
+      <DependentUpon>dsSalesListInfo.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\mohiudddinpossystem - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\PosSystem- Web Deploy.pubxml" />

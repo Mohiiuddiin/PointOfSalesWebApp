@@ -56,9 +56,9 @@ namespace PointOfSalesWebApp.Controllers
 
             reportViewer.Width = Unit.Percentage(100);
             reportViewer.Height = Unit.Percentage(100);
-            try
-            {
-                SalesInfoView data = new SalesInfoView();
+            //try
+            //{
+                //SalesInfoView data = new SalesInfoView();
                 IEnumerable<SalesInfoListView> dataList = new List<SalesInfoListView>();
 
                 //SaleInvoiceView saleInvoiceView = new SaleInvoiceView();
@@ -67,17 +67,17 @@ namespace PointOfSalesWebApp.Controllers
 
                 //data = db.Database.SqlQuery<SalesInfoView>("exec SalesInfoViewSp @Inv", InvParam).FirstOrDefault();
                 //dataList = db.Database.SqlQuery<SalesInfoListView>("exec SalesInfoListByInvSp @Inv", InvParam1).ToList();
-                data = salesct.SalesInfoViews.FirstOrDefault(x => x.SalesInvoiceNo == Inv);
+                List<SalesInfoView> data = salesct.SalesInfoViews.Where(x => x.SalesInvoiceNo == Inv).ToList();
                 dataList = salesct.SalesInfoListViews.Where(x => x.SalesInvoiceNo == Inv).ToList();
                 reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\CustomerInvoice.rdlc";
                 reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dsSalesInfo", data));
                 reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dsSalesListInfo", dataList));
                 ViewBag.ReportViewer = reportViewer;
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw;
+            //}
 
 
             return View();

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsSalesListInfo" targetNamespace="http://tempuri.org/dsSalesListInfo.xsd" xmlns:mstns="http://tempuri.org/dsSalesListInfo.xsd" xmlns="http://tempuri.org/dsSalesListInfo.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="DefaultConnection" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DefaultConnection (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.DefaultConnection.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SalesInfoListViewTableAdapter" GeneratorDataComponentClassName="SalesInfoListViewTableAdapter" Name="SalesInfoListView" UserDataComponentName="SalesInfoListViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DefaultConnection (Web.config)" DbObjectName="PosDB.dbo.SalesInfoListView" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT SalesInvoiceNo, Quantity, SRate, Vat, LineDiscount, ProductCode, ProductCompanyId, ProductName, CreatedAt, Total FROM dbo.SalesInfoListView</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SalesInvoiceNo" DataSetColumn="SalesInvoiceNo" />
+              <Mapping SourceColumn="Quantity" DataSetColumn="Quantity" />
+              <Mapping SourceColumn="SRate" DataSetColumn="SRate" />
+              <Mapping SourceColumn="Vat" DataSetColumn="Vat" />
+              <Mapping SourceColumn="LineDiscount" DataSetColumn="LineDiscount" />
+              <Mapping SourceColumn="ProductCode" DataSetColumn="ProductCode" />
+              <Mapping SourceColumn="ProductCompanyId" DataSetColumn="ProductCompanyId" />
+              <Mapping SourceColumn="ProductName" DataSetColumn="ProductName" />
+              <Mapping SourceColumn="CreatedAt" DataSetColumn="CreatedAt" />
+              <Mapping SourceColumn="Total" DataSetColumn="Total" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsSalesListInfo" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="dsSalesListInfo" msprop:Generator_UserDSName="dsSalesListInfo">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SalesInfoListView" msprop:Generator_TableClassName="SalesInfoListViewDataTable" msprop:Generator_TableVarName="tableSalesInfoListView" msprop:Generator_TablePropName="SalesInfoListView" msprop:Generator_RowDeletingName="SalesInfoListViewRowDeleting" msprop:Generator_RowChangingName="SalesInfoListViewRowChanging" msprop:Generator_RowEvHandlerName="SalesInfoListViewRowChangeEventHandler" msprop:Generator_RowDeletedName="SalesInfoListViewRowDeleted" msprop:Generator_UserTableName="SalesInfoListView" msprop:Generator_RowChangedName="SalesInfoListViewRowChanged" msprop:Generator_RowEvArgName="SalesInfoListViewRowChangeEvent" msprop:Generator_RowClassName="SalesInfoListViewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SalesInvoiceNo" msprop:Generator_ColumnVarNameInTable="columnSalesInvoiceNo" msprop:Generator_ColumnPropNameInRow="SalesInvoiceNo" msprop:Generator_ColumnPropNameInTable="SalesInvoiceNoColumn" msprop:Generator_UserColumnName="SalesInvoiceNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Quantity" msprop:Generator_ColumnVarNameInTable="columnQuantity" msprop:Generator_ColumnPropNameInRow="Quantity" msprop:Generator_ColumnPropNameInTable="QuantityColumn" msprop:Generator_UserColumnName="Quantity" type="xs:int" />
+              <xs:element name="SRate" msprop:Generator_ColumnVarNameInTable="columnSRate" msprop:Generator_ColumnPropNameInRow="SRate" msprop:Generator_ColumnPropNameInTable="SRateColumn" msprop:Generator_UserColumnName="SRate" type="xs:double" />
+              <xs:element name="Vat" msprop:Generator_ColumnVarNameInTable="columnVat" msprop:Generator_ColumnPropNameInRow="Vat" msprop:Generator_ColumnPropNameInTable="VatColumn" msprop:Generator_UserColumnName="Vat" type="xs:double" />
+              <xs:element name="LineDiscount" msprop:Generator_ColumnVarNameInTable="columnLineDiscount" msprop:Generator_ColumnPropNameInRow="LineDiscount" msprop:Generator_ColumnPropNameInTable="LineDiscountColumn" msprop:Generator_UserColumnName="LineDiscount" type="xs:double" />
+              <xs:element name="ProductCode" msprop:Generator_ColumnVarNameInTable="columnProductCode" msprop:Generator_ColumnPropNameInRow="ProductCode" msprop:Generator_ColumnPropNameInTable="ProductCodeColumn" msprop:Generator_UserColumnName="ProductCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProductCompanyId" msprop:Generator_ColumnVarNameInTable="columnProductCompanyId" msprop:Generator_ColumnPropNameInRow="ProductCompanyId" msprop:Generator_ColumnPropNameInTable="ProductCompanyIdColumn" msprop:Generator_UserColumnName="ProductCompanyId">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="128" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProductName" msprop:Generator_ColumnVarNameInTable="columnProductName" msprop:Generator_ColumnPropNameInRow="ProductName" msprop:Generator_ColumnPropNameInTable="ProductNameColumn" msprop:Generator_UserColumnName="ProductName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CreatedAt" msdata:DataType="System.DateTimeOffset" msprop:Generator_ColumnVarNameInTable="columnCreatedAt" msprop:Generator_ColumnPropNameInRow="CreatedAt" msprop:Generator_ColumnPropNameInTable="CreatedAtColumn" msprop:Generator_UserColumnName="CreatedAt" type="xs:anyType" />
+              <xs:element name="Total" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
